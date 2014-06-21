@@ -9,7 +9,6 @@
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-use Cake\Core\Configure;
 
 ?>
 <!DOCTYPE html>
@@ -51,8 +50,5 @@ use Cake\Core\Configure;
 			<?= $this->fetch('content'); ?>
 		</div>
 	</div>
-
-	<?= $this->element('sql_dump'); ?>
-
 </body>
 </html>
