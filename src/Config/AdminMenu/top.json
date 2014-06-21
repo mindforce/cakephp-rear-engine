@@ -1,0 +1,25 @@
+{
+	"add": {
+		"title": "Add...",
+		"url": null,
+		"weight": 10,
+		"children": {
+			"users": {
+				"title": "Add User",
+				"weight": 999,
+				"url": {
+					"plugin": "muffin",
+					"admin": true,
+					"controller": "users",
+					"action": "add"
+				},
+				"options": {
+					"icon": "user"
+				}
+			}
+		},
+		"options": {
+			"icon": "plus white"
+		}
+	}
+}

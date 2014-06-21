@@ -1,0 +1,14 @@
+{
+	"basic": {
+		"title": "Dashboard",
+		"url": {
+			"plugin": "muffin",
+			"controller": "homepages",
+			"action": "home"
+		},
+		"weight": 0,
+		"options": {
+			"icon": "home"
+		}
+	}
+}

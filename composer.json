@@ -1,0 +1,31 @@
+{
+	"name": "iteam-pro/rear_engine",
+	"description": "CakePHP UI plugin",
+	"homepage": "http://iteam-pro.com",
+	"keywords": ["cakephp", "ui"],
+	"type": "cakephp-plugin",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "iTeam s.r.o.",
+			"homepage": "https://iteam-pro.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/iTeam-pro/rear_engine/issues",
+		"source": "https://github.com/iTeam-pro/rear_engine"
+	},
+	"minimum-stability": "dev",
+	"require": {
+		"cakephp/cakephp": "~3.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"RearEngine\\": "src",
+			"RearEngine\\Test\\": "tests"
+		}
+	}
+}
