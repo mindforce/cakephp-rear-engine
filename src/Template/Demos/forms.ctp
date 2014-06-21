@@ -14,46 +14,36 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form role="form">
-                            <div class="form-group">
-                                <label>Text Input</label>
-                                <input class="form-control">
-                                <p class="help-block">Example block-level help text here.</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Text Input with Placeholder</label>
-                                <input class="form-control" placeholder="Enter text">
-                            </div>
-                            <div class="form-group">
-                                <label>Static Control</label>
-                                <p class="form-control-static">email@example.com</p>
-                            </div>
-                            <div class="form-group">
-                                <label>File input</label>
-                                <input type="file">
-                            </div>
-                            <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 1
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 2
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 3
-                                    </label>
-                                </div>
-                            </div>
+                        <?= $this->Form->create(); ?>
+	                        <?= $this->Form->input('text', array(
+									'label' => __d('rear_engine', 'Text Input'),
+									'help' => __d('rear_engine', 'Example block-level help text here.'),
+								)).$this->Form->input('placeholder_text', array(
+			                        'label' => __d('rear_engine', 'Text Input with Placeholder'),
+			                        'placeholder' => __d('rear_engine', 'Enter text'),
+		                        )).$this->Form->input('static', array(
+			                        'type' => 'static',
+	                                'label' => __d('rear_engine', 'Static Control'),
+	                                'value' => 'email@example.com',
+		                        )).$this->Form->input('file', array(
+			                        'type' => 'file',
+	                                'label' => __d('rear_engine', 'File input'),
+		                        )).$this->Form->input('textarea', array(
+			                        'type' => 'textarea',
+	                                'label' => __d('rear_engine', 'Text area'),
+			                        'rows' => 3
+		                        )).$this->Form->input('checkbox_group', array(
+			                        //TODO: maybe Checkbox Widget redesign needed
+			                        'type' => 'select',
+	                                'label' => __d('rear_engine', 'Checkbox'),
+			                        'multiple' => 'checkbox',
+			                        'options' => [
+				                        1 => __d('rear_engine', 'Checkbox 1'),
+				                        2 => __d('rear_engine', 'Checkbox 2'),
+				                        3 => __d('rear_engine', 'Checkbox 3')
+			                        ]
+								));
+	                        ?>
                             <div class="form-group">
                                 <label>Inline Checkboxes</label>
                                 <label class="checkbox-inline">
@@ -66,6 +56,17 @@
                                     <input type="checkbox">3
                                 </label>
                             </div>
+							<?= $this->Form->input('radio', array(
+									'type' => 'radio',
+									'label' => __d('rear_engine', 'Radio Buttons'),
+									'options' => [
+										1 => __d('rear_engine', 'Radio 1'),
+										2 => __d('rear_engine', 'Radio 2'),
+										3 => __d('rear_engine', 'Radio 3')
+									]
+								));
+							?>
+
                             <div class="form-group">
                                 <label>Radio Buttons</label>
                                 <div class="radio">
@@ -96,55 +97,49 @@
                                     <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
                                 </label>
                             </div>
-                            <div class="form-group">
-                                <label>Selects</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Multiple Selects</label>
-                                <select multiple class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
-                        </form>
+		                    <?= $this->Form->input('select', array(
+	                                'type' => 'select',
+	                                'label' => __d('rear_engine', 'Selects'),
+	                                'options' => [1, 2, 3, 4, 5]
+	                            )).$this->Form->input('multiple_select', array(
+                                    'type' => 'select',
+			                        'multiple' => true,
+                                    'label' => __d('rear_engine', 'Multiple Selects'),
+                                    'options' => [1, 2, 3, 4, 5]
+                                ));
+	                        ?>
+	                        <?= $this->Form->button(__d('rear_engine', 'Submit Button'), ['type' => 'submit', 'class' => 'btn-default']); ?>
+		                    <?= $this->Form->button(__d('rear_engine', 'Reset Button'), ['type' => 'reset', 'class' => 'btn-default']); ?>
+                        <?= $this->Form->end(); ?>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
                     <div class="col-lg-6">
                         <h1>Disabled Form States</h1>
-                        <form role="form">
+                        <?= $this->Form->create(); ?>
                             <fieldset disabled>
-                                <div class="form-group">
-                                    <label for="disabledSelect">Disabled input</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="disabledSelect">Disabled select menu</label>
-                                    <select id="disabledSelect" class="form-control">
-                                        <option>Disabled select</option>
-                                    </select>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Disabled Checkbox
-                                    </label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Disabled Button</button>
+	                            <?= $this->Form->input('disabled_input', array(
+			                            'disabled' => true,
+		                                'placeholder' =>  __d('rear_engine', 'Disabled input'),
+                                        'label' => __d('rear_engine', 'Disabled input'),
+                                    )).$this->Form->input('disabled_select', array(
+										'type' => 'select',
+		                                'disabled' => true,
+										'label' => __d('rear_engine', 'Disabled select menu'),
+										'options' => ['' => __d('rear_engine', 'Disabled select')]
+	                                )).$this->Form->input('disabled_checkbox', array(
+										'type' => 'checkbox',
+										'disabled' => true,
+										'label' => __d('rear_engine', ''),
+                                    ));
+                                ?>
                             </fieldset>
-                        </form>
+		                    <?= $this->Form->button(__d('rear_engine', 'Disabled Button'),
+			                        ['disabled'=> true, 'type' => 'submit', 'class' => 'btn-primary']
+		                        );
+		                    ?>
+                        <?= $this->Form->end(); ?>
                         <h1>Form Validation States</h1>
-                        <form role="form">
+                        <?= $this->Form->create(); ?>
                             <div class="form-group has-success">
                                 <label class="control-label" for="inputSuccess">Input with success</label>
                                 <input type="text" class="form-control" id="inputSuccess">
@@ -157,9 +152,9 @@
                                 <label class="control-label" for="inputError">Input with error</label>
                                 <input type="text" class="form-control" id="inputError">
                             </div>
-                        </form>
+                        <?= $this->Form->end(); ?>
                         <h1>Input Groups</h1>
-                        <form role="form">
+                        <?= $this->Form->create(); ?>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">@</span>
                                 <input type="text" class="form-control" placeholder="Username">
@@ -185,7 +180,7 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        <?= $this->Form->end(); ?>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
                 </div>

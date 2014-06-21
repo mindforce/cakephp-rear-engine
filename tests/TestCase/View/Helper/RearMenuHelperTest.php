@@ -6,9 +6,9 @@ use RearEngine\View\Helper\AdminMenuHelper;
 use Cake\TestSuite\TestCase;
 
 /**
- * RearEngine\View\Helper\AdminMenuHelper Test Case
+ * RearEngine\View\Helper\RearMenuHelper Test Case
  */
-class AdminMenuHelperTest extends TestCase {
+class RearMenuHelperTest extends TestCase {
 
 /**
  * setUp method
@@ -18,7 +18,7 @@ class AdminMenuHelperTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 		$view = new View();
-		$this->AdminMenu = new AdminMenuHelper($view);
+		$this->RearMenu = new RearMenuHelper($view);
 	}
 
 /**
@@ -27,7 +27,7 @@ class AdminMenuHelperTest extends TestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->AdminMenu);
+		unset($this->RearMenu);
 
 		parent::tearDown();
 	}
