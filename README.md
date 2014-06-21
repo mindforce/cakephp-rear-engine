@@ -2,8 +2,9 @@
 
 RearEngine is designed and developed to use the power and flexibility of CakePHP
 for creation lightweight user interfaces with a minimum amount of time.
-Warning! It is early development stage. Do not use in real projects. The
-production version will be released after the official release keykphp
+
+**Warning! It is early development stage. Do not use in real projects. The
+production version will be released after the official release CakePHP**
 
 ## Installing RearEngine via composer
 
