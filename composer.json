@@ -12,8 +12,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/iTeam-pro/rear_engine/issues",
-		"source": "https://github.com/iTeam-pro/rear_engine"
+		"issues": "https://github.com/iteam-pro/rear_engine/issues",
+		"source": "https://github.com/iteam-pro/rear_engine"
 	},
 	"minimum-stability": "dev",
 	"require": {
