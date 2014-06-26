@@ -64,40 +64,16 @@
 										2 => __d('rear_engine', 'Radio 2'),
 										3 => __d('rear_engine', 'Radio 3')
 									]
-								));
-							?>
-
-                            <div class="form-group">
-                                <label>Radio Buttons</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Inline Radio Buttons</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                </label>
-                            </div>
-		                    <?= $this->Form->input('select', array(
+								)).$this->Form->input('radio', array(
+									'type' => 'radio',
+									'inline' => true,
+									'label' => __d('rear_engine', 'Inline Radio Buttons'),
+									'options' => [
+										1 => __d('rear_engine', 'Radio 1'),
+										2 => __d('rear_engine', 'Radio 2'),
+										3 => __d('rear_engine', 'Radio 3')
+									]
+								)).$this->Form->input('select', array(
 	                                'type' => 'select',
 	                                'label' => __d('rear_engine', 'Selects'),
 	                                'options' => [1, 2, 3, 4, 5]

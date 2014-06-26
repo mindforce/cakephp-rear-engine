@@ -2,7 +2,7 @@
 namespace RearEngine\Controller;
 
 use RearEngine\Controller\AppController;
-use RearEngine\View\Helper\BootstrapForm;
+//use RearEngine\View\Helper\BootstrapForm;
 
 class DemosController extends AppController {
 
@@ -12,7 +12,8 @@ class DemosController extends AppController {
 		    //'className' => 'RearEngine.BootstrapForm',
 		    'errorClass' => 'has-error',
 			'widgets' => [
-				'static' => ['\RearEngine\View\Widget\StaticField']
+				'static' => ['\RearEngine\View\Widget\StaticField'],
+				'radio' => ['\RearEngine\View\Widget\Bootstrap3Radio', 'label']
 			],
 		    'templateClass' => 'RearEngine\View\ExtendedStringTemplate',
 			'templates' => 'RearEngine.bootstrap3_form.php',
