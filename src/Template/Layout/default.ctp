@@ -4,11 +4,12 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) iTeam s.r.o. (http://iteam-pro.org)
- * @link          http://iteam-pro.com RearEngine Project
+ * @copyright     Copyright (c) iTeam s.r.o. (http://iteam-pro.com)
+ * @link          http://iteam-pro.com RearEngine CakePHP 3 Plugin
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 use Cake\Core\Configure;
 
 ?>
@@ -27,6 +28,7 @@ use Cake\Core\Configure;
 	<?php
 		echo $this->Html->css([
 			'RearEngine.bootstrap',
+			'RearEngine.bootstrap-theme',
 			'RearEngine.font-awesome',
 			'RearEngine.sb-admin',
 		]);
@@ -35,7 +37,7 @@ use Cake\Core\Configure;
 	<!-- Core Scripts - Include with every page -->
 	<?php
 		echo $this->Html->script([
-			'RearEngine.jquery-1.10.2',
+			'RearEngine.jquery',
 			'RearEngine.bootstrap',
 			'RearEngine.plugins/metisMenu/jquery.metisMenu',
 			'RearEngine.sb-admin',

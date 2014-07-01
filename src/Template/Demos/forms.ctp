@@ -1,3 +1,16 @@
+<?php
+/**
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) iTeam s.r.o. (http://iteam-pro.com)
+ * @link          http://iteam-pro.com RearEngine CakePHP 3 Plugin
+ * @since         0.0.1
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Forms</h1>
@@ -32,31 +45,28 @@
 			                        'type' => 'textarea',
 	                                'label' => __d('rear_engine', 'Text area'),
 			                        'rows' => 3
+								)).$this->Form->input('checkbox', array(
+									'type' => 'checkbox',
 		                        )).$this->Form->input('checkbox_group', array(
-			                        //TODO: maybe Checkbox Widget redesign needed
 			                        'type' => 'select',
-	                                'label' => __d('rear_engine', 'Checkbox'),
+	                                'label' => __d('rear_engine', 'Checkboxes'),
 			                        'multiple' => 'checkbox',
 			                        'options' => [
 				                        1 => __d('rear_engine', 'Checkbox 1'),
 				                        2 => __d('rear_engine', 'Checkbox 2'),
 				                        3 => __d('rear_engine', 'Checkbox 3')
 			                        ]
-								));
-	                        ?>
-                            <div class="form-group">
-                                <label>Inline Checkboxes</label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">1
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">2
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">3
-                                </label>
-                            </div>
-							<?= $this->Form->input('radio', array(
+								)).$this->Form->input('inline_checkbox_group', array(
+			                        'type' => 'select',
+		                            'inline' => true,
+	                                'label' => __d('rear_engine', 'Inline Checkboxes'),
+			                        'multiple' => 'checkbox',
+			                        'options' => [
+				                        1 => __d('rear_engine', 'Checkbox 1'),
+				                        2 => __d('rear_engine', 'Checkbox 2'),
+				                        3 => __d('rear_engine', 'Checkbox 3')
+			                        ]
+								)).$this->Form->input('radio', array(
 									'type' => 'radio',
 									'label' => __d('rear_engine', 'Radio Buttons'),
 									'options' => [
@@ -105,7 +115,7 @@
 	                                )).$this->Form->input('disabled_checkbox', array(
 										'type' => 'checkbox',
 										'disabled' => true,
-										'label' => __d('rear_engine', ''),
+										'label' => __d('rear_engine', 'Disabled Checkbox'),
                                     ));
                                 ?>
                             </fieldset>

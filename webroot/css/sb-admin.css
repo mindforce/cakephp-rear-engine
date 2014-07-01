@@ -37,6 +37,18 @@ body {
     }
 }
 
+.form-group>label {
+	margin-right: 5px;
+}
+.form-group.radio>label {
+	font-weight: bold;
+	padding-left: 0;
+}
+.form-group.radio>label.radio-inline {
+	font-weight: normal;
+	padding-left: 20px;
+}
+
 /* Navigation */
 
 /* ------------------------------- */

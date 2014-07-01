@@ -1,11 +1,22 @@
 <?php
+/**
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) iTeam s.r.o. (http://iteam-pro.com)
+ * @link          http://iteam-pro.com RearEngine CakePHP 3 Plugin
+ * @since         0.0.1
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+
 namespace RearEngine\View\Cell;
 
 use Cake\View\Cell;
 use Cake\Core\Plugin;
 use Cake\Core\Configure;
 use Cake\Configure\Engine\PhpConfig;
-use Cake\Utility\Hash;
+use Cake\Log\Log;
 
 /**
  * Navigation cell
@@ -34,12 +45,16 @@ class NavigationCell extends Cell {
 			Configure::load('RearEngine.demo_menus.php', 'rear_menus', true);
 		}
 		foreach(Plugin::loaded() as $plugin){
-			Configure::load($plugin.'.rear_menus.php', 'rear_menus', true);
+			try {
+				Configure::load($plugin.'.rear_menus.php', 'rear_menus', true);
+			} catch (\Exception $e) {
+				Log::write(LOG_ERR, 'Unable to load app '.$plugin.'.rear_menus.php.');
+			}
 		}
 		try {
 			Configure::load('rear_menus.php', 'rear_menus', true);
 		} catch (\Exception $e) {
-			//die('Unable to load Config/app.php. Create it by copying Config/app.default.php to Config/app.php.');
+			Log::write(LOG_ERR, 'Unable to load app rear_menus.php.');
 		}
 
 		if(!empty($block)){
