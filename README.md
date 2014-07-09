@@ -1,7 +1,7 @@
-# RearEngine - CakePHP 3 UI plugin
+# RearEngine - CakePHP 3 plugin
 
 RearEngine is designed and developed to use the power and flexibility of CakePHP
-for creation lightweight user interfaces with a minimum amount of time.
+for creation applications with a minimum amount of time.
 
 **Warning! It is early development stage. Do not use in real projects. The
 production version will be released after the official release CakePHP**

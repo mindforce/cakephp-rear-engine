@@ -9,7 +9,23 @@
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-?>
-<nav class="admin-menu <?= $block; ?>-menu">
-	<?= $this->AdminMenu->render($menu, 0); ?>
-</nav>
+namespace RearEngine\Controller\admin;
+
+use RearEngine\Controller\AppController;
+
+/**
+ * Dashboards Controller
+ *
+ */
+class DashboardsController extends AppController {
+
+/**
+ * Index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->render('/Pages/home');
+	}
+
+}

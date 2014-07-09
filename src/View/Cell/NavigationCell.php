@@ -36,30 +36,12 @@ class NavigationCell extends Cell {
  *
  * @return void
  */
-	public $helpers = ['RearEngine.RearMenu'];
+	public $helpers = ['RearEngine.AdminMenu'];
 
 	public function display($block = null) {
-		//TODO: probably move to beforeFilter with admin setection
-		Configure::config('rear_menus', new PhpConfig());
-		if(Configure::read('debug')){
-			Configure::load('RearEngine.demo_menus.php', 'rear_menus', true);
-		}
-		foreach(Plugin::loaded() as $plugin){
-			try {
-				Configure::load($plugin.'.rear_menus.php', 'rear_menus', true);
-			} catch (\Exception $e) {
-				Log::write(LOG_ERR, 'Unable to load app '.$plugin.'.rear_menus.php.');
-			}
-		}
-		try {
-			Configure::load('rear_menus.php', 'rear_menus', true);
-		} catch (\Exception $e) {
-			Log::write(LOG_ERR, 'Unable to load app rear_menus.php.');
-		}
-
 		if(!empty($block)){
-			$this->set('menu', Configure::read('RearEngine.menu.'.$block));
-			$this->template = $block;
+			$this->set('menu', Configure::read('App.admin.menu.'.$block));
+			$this->set('block', $block);
 		}
 	}
 

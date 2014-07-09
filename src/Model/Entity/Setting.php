@@ -9,12 +9,30 @@
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+namespace RearEngine\Model\Entity;
 
-namespace RearEngine\Controller;
+use Cake\ORM\Entity;
 
-use App\Controller\AppController as BaseController;
+/**
+ * Setting Entity.
+ */
+class Setting extends Entity {
 
-class AppController extends BaseController {
-
+/**
+ * Fields that can be mass assigned using newEntity() or patchEntity().
+ *
+ * @var array
+ */
+	protected $_accessible = [
+		'scope' => false,
+		'key' => false,
+		'value' => true,
+		'title' => false,
+		'description' => false,
+		'type' => false,
+		'default' => false,
+		'editable' => false,
+		'options' => false,
+	];
 
 }

@@ -9,7 +9,13 @@
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-?>
-<nav class="admin-menu <?= $block; ?>-menu">
-	<?= $this->AdminMenu->render($menu, 0); ?>
-</nav>
+
+use Cake\Routing\Router;
+
+//TODO: Possible changes in new routing system test usage
+Router::plugin('RearEngine', function($routes){
+	$routes->prefix('admin', function($routes){
+		$routes->connect('/', ['controller' => 'Dashboards', 'action' => 'index']);
+		$routes->connect('/settings', ['controller' => 'Settings', 'action' => 'edit']);
+	});
+});
