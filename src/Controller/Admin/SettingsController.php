@@ -12,7 +12,8 @@
 namespace RearEngine\Controller\Admin;
 
 use RearEngine\Controller\AppController;
-use Cake\Core\Configure;
+use Cake\Utility\Hash;
+use RearEngine\Lib\Core\Settings;
 
 /**
  * Settings Controller
@@ -27,7 +28,10 @@ class SettingsController extends AppController {
  * @return void
  */
 	public function index() {
-		$settings = $this->Settings->find('all')->all();
+		$settings = $this->Settings
+			->find('all')
+			->where(['Settings.editable' => 1])
+			->all();
 		if ($this->request->is(['post', 'put'])) {
 			$settings = $this->Settings->patchEntities($settings, $this->request->data()['Setting']);
             $result = $this->Settings->connection()->transactional(function () use ($settings) {
@@ -39,12 +43,16 @@ class SettingsController extends AppController {
             });
 
 			if ($result) {
-                $scopes = []; //['App'];
-                foreach($settings as $setting) {
-                    Configure::write($setting->scope .'.'. $setting->key, $setting->value);
-                    $scopes[] = $setting->scope;
-                }
-                Configure::dump('config.php', 'default', array_unique($scopes));
+				$settings = $this->Settings->find('all')->all();
+				$dump = [];
+				foreach ($settings as $setting){
+					$fullKey = $setting->key;
+					if(!empty($setting->scope)) $fullKey = $setting->scope.'.'.$fullKey;
+					$dump[$fullKey] = $setting->value;
+				}
+				ksort($dump);
+				$dump = Hash::expand($dump);
+				Settings::dump('config.php', 'default', $dump);
 
 				$this->Flash->success('The settings has been saved.');
 				return $this->redirect(['action' => 'index']);

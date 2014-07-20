@@ -61,8 +61,8 @@ $config = [
 						'title' => __d('rear_engine', 'Dashboard'),
 						'url' => [
 							'prefix' => 'admin',
-							'plugin' => 'rear_engine',
-							'controller' => 'dashboards',
+							'plugin' => 'RearEngine',
+							'controller' => 'Dashboards',
 							'action' => 'index'
 						],
 						'weight' => 10,
@@ -81,8 +81,8 @@ $config = [
 								'title' => __d('rear_engine', 'Settings'),
 								'url' => [
 									'prefix' => 'admin',
-									'plugin' => 'rear_engine',
-									'controller' => 'settings',
+									'plugin' => 'RearEngine',
+									'controller' => 'Settings',
 									'action' => 'index'
 								],
 								'weight' => 0,

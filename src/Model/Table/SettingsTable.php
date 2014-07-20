@@ -29,8 +29,11 @@ class SettingsTable extends Table {
 		$this->table('settings');
 		$this->displayField('title');
 		$this->primaryKey(['id']);
-		//TODO: maybe a tricky way implemented in CakePHP 3.0 https://github.com/cakephp/cakephp/issues/3854
-		$this->schema()->addColumn('options', ['type' => 'json']);
+	}
+
+	protected function _initializeSchema(\Cake\Database\Schema\Table $table) {
+		$table->columnType('options', 'json');
+		return $table;
 	}
 
 /**

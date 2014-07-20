@@ -12,8 +12,8 @@
 
 use Cake\Core\Configure;
 use Cake\Database\Type;
-//use Cake\Configure\Engine\PhpConfig;
 use Cake\Core\App;
+use Cake\Event\EventManager;
 
 Configure::write('App.paths.templates', array_merge(
 	Configure::read('App.paths.templates'),
@@ -23,14 +23,13 @@ Configure::write('App.paths.templates', array_merge(
 try {
 	Configure::load('config.php', 'default', true);
 } catch (\Exception $e) {
-	die('Unable to load Config/settings.php. Create it by copying RearEngine/src/Config/app.default.php to Config/app.php.');
+	//die('Unable to load Config/settings.php. Create it by copying RearEngine/src/Config/app.default.php to Config/app.php.');
 }
-
 Configure::write('Routing.prefixes', ['admin']);
+//debug(Configure::read());
 
 Type::map('json', 'RearEngine\Database\Type\JsonType');
 
-use Cake\Event\EventManager;
 
 EventManager::instance()->attach(
 	new RearEngine\Event\RearEngineCoreEvent,

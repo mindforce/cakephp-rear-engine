@@ -38,10 +38,12 @@ use Cake\Utility\Hash;
 					$options['style'] = false;
 				}
 			}
-			if(!empty($setting->title))
+			if(!empty($setting->title)){
 				$options['label'] = __($setting->title);
+				$options['legend'] = true;
+			}
 			if(!empty($setting->description))
-				$options['help'] = __($setting->description);
+				$options['placeholder'] = __($setting->description);
 
 			$options['value'] = $setting->value;
 			if(!empty($setting->value))
@@ -49,10 +51,12 @@ use Cake\Utility\Hash;
 
 
 			$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
-			$input = $this->Form->input("Setting.$i.value", $options);
-
-
-			$inputs[$setting->scope][] = $id.$input;
+			$outputCell = 'RearEngine.Setting';
+			if(!empty($setting->cell)) $outputCell = $setting->cell;
+			$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
+			$section = $setting->scope;
+			if(empty($section)) $section = 'App';
+			$inputs[$section][] = $id.$input;
 		}
 		?>
 		<nav class="admin-menu">
@@ -88,6 +92,6 @@ use Cake\Utility\Hash;
 <div class="actions">
 	<h3><?= __('Actions'); ?></h3>
 	<ul>
-		<li><?= $this->Html->link(__d('rear_engine', 'Dashboard'), ['controller' => 'dashboards', 'action' => 'index']); ?></li>
+		<li><?= $this->Html->link(__d('rear_engine', 'Dashboard'), ['controller' => 'Dashboards', 'action' => 'index']); ?></li>
 	</ul>
 </div>

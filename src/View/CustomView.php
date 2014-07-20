@@ -12,6 +12,7 @@
 namespace RearEngine\View;
 
 use Cake\View\View;
+use Cake\Utility\Inflector;
 
 /**
  * View, the V in the MVC triad. View interacts with Helpers and view variables passed
@@ -61,19 +62,24 @@ class CustomView extends View {
 			list($plugin, $name) = $this->pluginSplit($name);
 			$paths = $this->_paths($plugin);
 
-			//prefixed Layout lookup
-			if(isset($this->request->params['prefix']))
-				$files[] = ucfirst($this->request->params['prefix']).DS.'Layout' . DS . $subDir . $name;
-			//fallback for standard Layout or just use it if prefix is not set
-			$files[] = 'Layout' . DS . $subDir . $name;
-			foreach ($files as $file){
-				foreach ($paths as $path) {
-					if (file_exists($path . $file . $this->_ext)) {
-						return $path . $file . $this->_ext;
+			$layoutPaths = ['Layout' . DS . $subDir];
+			if (!empty($this->request->params['prefix'])) {
+				array_unshift(
+					$layoutPaths,
+					Inflector::camelize($this->request->params['prefix']) . DS . $layoutPaths[0]
+				);
+			}
+
+			foreach ($paths as $path) {
+				foreach ($layoutPaths as $layoutPath) {
+					if (file_exists($path . $layoutPath . $name . $this->_ext)) {
+						return $path . $layoutPath . $name . $this->_ext;
 					}
 				}
 			}
-			throw new Error\MissingLayoutException(array('file' => $file . $this->_ext));
+			throw new Error\MissingLayoutException(array(
+				'file' => $layoutPath[0] . $name . $this->_ext
+			));
 		}
 
 }

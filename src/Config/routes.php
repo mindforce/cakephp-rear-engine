@@ -12,10 +12,21 @@
 
 use Cake\Routing\Router;
 
-//TODO: Possible changes in new routing system test usage
-Router::plugin('RearEngine', function($routes){
-	$routes->prefix('admin', function($routes){
-		$routes->connect('/', ['controller' => 'Dashboards', 'action' => 'index']);
-		$routes->connect('/settings', ['controller' => 'Settings', 'action' => 'edit']);
+/* Front default routes */
+Router::scope('/', function($routes) {
+	$routes->plugin('RearEngine', function($routes) {
+		$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+		$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
+	});
+});
+
+/* Admin default routes */
+Router::connect('/admin', ['prefix'=>'admin', 'plugin'=>'RearEngine', 'controller' => 'Dashboards', 'action' => 'index']);
+
+Router::scope('/admin', function($routes) {
+	$routes->connect('/settings', ['prefix' => 'admin', 'plugin'=>'RearEngine', 'controller' => 'Settings', 'action' => 'index']);
+	$routes->plugin('RearEngine', function($routes) {
+		$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+		$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
 	});
 });
