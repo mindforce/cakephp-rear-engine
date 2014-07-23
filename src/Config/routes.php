@@ -23,6 +23,12 @@ Router::scope('/', function($routes) {
 /* Admin default routes */
 Router::connect('/admin', ['prefix'=>'admin', 'plugin'=>'RearEngine', 'controller' => 'Dashboards', 'action' => 'index']);
 
+Router::prefix('admin', function($routes) {
+    $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+    $routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
+});
+
+
 Router::scope('/admin', function($routes) {
 	$routes->connect('/settings', ['prefix' => 'admin', 'plugin'=>'RearEngine', 'controller' => 'Settings', 'action' => 'index']);
 	$routes->plugin('RearEngine', function($routes) {

@@ -31,8 +31,6 @@ class RearEngineCoreEvent implements EventListener {
         $controller = $event->subject();
 		if (isset($controller->request->params['prefix'])
 			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
-			//TODO: remove CustomView when CakePHP support prefixed layouts
-			$controller->viewClass = 'RearEngine\View\CustomView';
 
 			$controller->theme = 'RearEngine';
 			if($theme = Configure::read('App.admin.theme'))
