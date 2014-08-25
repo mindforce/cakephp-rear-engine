@@ -28,11 +28,9 @@ class SettingsController extends AppController {
  * @return void
  */
 	public function index() {
-		$settings = $this->Settings
-			->find('all')
-			->where(['Settings.editable' => 1])
-			->all();
+
 		if ($this->request->is(['post', 'put'])) {
+			$settings = $this->Settings->find('all')->all();
 			$settings = $this->Settings->patchEntities($settings, $this->request->data()['Setting']);
             $result = $this->Settings->connection()->transactional(function () use ($settings) {
                 foreach ($settings as $setting) {
@@ -41,18 +39,13 @@ class SettingsController extends AppController {
                 }
                 return true;
             });
-
 			if ($result) {
-				$settings = $this->Settings->find('all')->all();
-				$dump = [];
-				foreach ($settings as $setting){
-					$fullKey = $setting->key;
-					if(!empty($setting->scope)) $fullKey = $setting->scope.'.'.$fullKey;
-					$dump[$fullKey] = $setting->value;
-				}
-				ksort($dump);
-				$dump = Hash::expand($dump);
-				Settings::dump('config.php', 'default', $dump);
+				$settings = $this->Settings->find()
+					->combine('key', 'value')
+					->toArray();
+				ksort($settings);
+				$settings = Hash::expand($settings);
+				Settings::dump('config.php', 'default', $settings);
 
 				$this->Flash->success('The settings has been saved.');
 				return $this->redirect(['action' => 'index']);
@@ -60,7 +53,10 @@ class SettingsController extends AppController {
 				$this->Flash->error('The settings could not be saved. Please, try again.');
 			}
 		}
-		$this->set(compact('settings'));
+		$settings = $this->Settings->find('extended')
+			->find('editable')
+			->toArray();
+		$this->set('settings', $settings['editable']);
 	}
 
 }

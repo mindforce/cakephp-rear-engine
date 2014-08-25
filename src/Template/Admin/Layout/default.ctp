@@ -26,6 +26,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 		echo $this->Html->css([
 			'cake.generic',
+			'admin',
 			'admin_menu'
 		]);
 

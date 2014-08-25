@@ -11,28 +11,88 @@
  */
 namespace RearEngine\Console\Command\Task;
 
-use RearEngine\Console\Command\Task\UnitTask;
+use Cake\Console\Command\Task\BakeTask;
+use Cake\Datasource\ConnectionManager;
+use Cake\Configure\Engine\PhpConfig;
+use Cake\ORM\TableRegistry;
+use Cake\Utility\Inflector;
+use Cake\Utility\Hash;
 
 /**
  * Language string extractor
  *
  */
-class SettingsTask extends UnitTask{
+class SettingsTask extends BakeTask{
 
-    public function initialize(){
-        parent::initialize();
-        $this->loadModel('RearEngine.Settings');
-    }
+	public $plugin = null;
 
-    public function export(){
-        $settings = $this->Settings
-            ->find('all')
-            ->where(['Settings.plugin' => 'RearEngine'])
-            ->all();
+	public function startup() {
+		parent::startup();
+
+		if (isset($this->params['plugin'])) {
+			$this->plugin = $this->params['plugin'];
+		}
+	}
+
+	/*
+	public function export(){
+        $config = new PhpConfig();
+        if($settings = $this->get()){
+	        $settings = $this->cleanup($settings);
+	        $settingsFile = 'settings';
+            if(!empty($this->plugin))
+	            $settingsFile = $this->plugin.'.settings';
+            //$config->dump($settingsFile, $settings);
+        }
     }
+	*/
 
     public function import(){
 
+
+
+    }
+
+    public function get(){
+        $settingsTable = $this->getTableObject('RearEngine.Settings');
+        $queryOptions = [];
+        $queryOptions['conditions'] = ['Settings.plugin' => ''];
+        if(!empty($this->plugin))
+            $queryOptions['conditions'] = ['Settings.plugin' => $this->plugin];
+
+        $settings = $settingsTable->find('extended', $queryOptions);
+        $_settings = [];
+        foreach($settings as $key=>$setting){
+            $_settings[] = $setting->toArray();
+        }
+        return $_settings;
+    }
+
+
+    protected function cleanup($rows){
+	    $rows = Hash::filter($rows);
+        foreach($rows as $key=>$row){
+            unset($rows[$key]['id'], $rows[$key]['value']);
+        }
+        return $rows;
+    }
+
+/**
+ * Get a model object for a class name.
+ *
+ * @param string $className Name of class you want model to be.
+ * @param string $table Table name
+ * @return \Cake\ORM\Table Table instance
+ */
+    public function getTableObject($className) {
+        if (TableRegistry::exists($className)) {
+            return TableRegistry::get($className);
+        }
+        return TableRegistry::get($className, [
+            'name' => $className,
+            'table' => Inflector::tableize($className),
+            'connection' => ConnectionManager::get($this->connection)
+        ]);
     }
 
 /**
@@ -46,11 +106,11 @@ class SettingsTask extends UnitTask{
         $parser = parent::getOptionParser();
         $parser->description(
             __d('cake_console', 'Task to dump/restore available settings.')
-        )->addSubcommand('export', [
-            'help' => __d('cake_console', 'Exporting available settings to dumps.')
-        ])->addSubcommand('import', [
+        )->addSubcommand('import', [
             'help' => __d('cake_console', 'Import settings from previously dumped files.')
-        ]);
+        ]);//->addSubcommand('export', [
+        //    'help' => __d('cake_console', 'Exporting available settings to dumps.')
+        //]);
         return $parser;
     }
 

@@ -14,51 +14,54 @@ use Cake\Utility\Hash;
 ?>
 <div class="posts form">
 <?= $this->Form->create('Setting'); ?>
+	<?php
+	foreach ($settings as $i=>$setting){
+		$label = explode('.', $setting->key);
+		$section = 'App';
+		if (count($label) > 1)
+			$section = $label[0];
+		unset($label[0]);
+
+		$options = [
+			'type' => 'text',
+			'label' => Inflector::humanize(implode("_", $label))
+		];
+		if(is_array($setting->options)){
+			$options = Hash::merge($options, $setting->options);
+		}
+
+		if (!empty($setting->type)){
+			$options['type'] = $setting->type;
+			if(($options['type'] == 'checkbox')&&($setting->value == 1)){
+				$options['checked'] = 'checked';
+				$options['style'] = false;
+			} elseif(($options['type'] == 'radio')) {
+				$options['style'] = false;
+			}
+		}
+		if(!empty($setting->title)){
+			$options['label'] = $setting->title;
+			$options['legend'] = true;
+		}
+		if(!empty($setting->description))
+			$options['placeholder'] = $setting->description;
+
+		$options['value'] = $setting->value;
+		if(!empty($setting->value))
+			$options['value'] = $setting->value;
+
+
+		$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
+		$outputCell = 'RearEngine.Setting';
+		if(!empty($setting->cell)) $outputCell = $setting->cell;
+		$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
+		$inputs[$section][] = $id.$input;
+	}
+	?>
 	<?= $this->Html->link('', '#', ['id' => 'settings_top'])?>
 	<fieldset>
 		<legend><?= __d('rear_engine', 'Settings'); ?></legend>
-		<?php
-		foreach ($settings as $i => $setting){
-			$label = explode('.', $setting->key);
-			unset($label[0]);
-			$options = [
-				'type' => 'text',
-				'label' => Inflector::humanize(implode("_", $label))
-			];
-			if(is_array($setting->options)){
-				$options = Hash::merge($options, $setting->options);
-			}
 
-			if (!empty($setting->type)){
-				$options['type'] = $setting->type;
-				if(($options['type'] == 'checkbox')&&($setting->value == 1)){
-					$options['checked'] = 'checked';
-					$options['style'] = false;
-				} elseif(($options['type'] == 'radio')) {
-					$options['style'] = false;
-				}
-			}
-			if(!empty($setting->title)){
-				$options['label'] = __($setting->title);
-				$options['legend'] = true;
-			}
-			if(!empty($setting->description))
-				$options['placeholder'] = __($setting->description);
-
-			$options['value'] = $setting->value;
-			if(!empty($setting->value))
-				$options['value'] = $setting->value;
-
-
-			$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
-			$outputCell = 'RearEngine.Setting';
-			if(!empty($setting->cell)) $outputCell = $setting->cell;
-			$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
-			$section = $setting->scope;
-			if(empty($section)) $section = 'App';
-			$inputs[$section][] = $id.$input;
-		}
-		?>
 		<nav class="admin-menu">
 			<ul>
 			<?php
