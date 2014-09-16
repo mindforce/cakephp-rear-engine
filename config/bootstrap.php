@@ -32,7 +32,7 @@ Type::map('json', 'RearEngine\Database\Type\JsonType');
 
 
 EventManager::instance()->attach(
-	new RearEngine\Event\RearEngineCoreEvent,
+	new RearEngine\Event\CoreEvent,
     null,
 	['priority' => 1]
 );

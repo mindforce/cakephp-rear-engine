@@ -5,96 +5,102 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) iTeam s.r.o. (http://iteam-pro.com)
- * @link          http://iteam-pro.com RearEngine CakePHP 3 Plugin
+ * @link          http://iteam-pro.com SbAdmin2 CakePHP 3 Theme
  * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 use Cake\Utility\Inflector;
 use Cake\Utility\Hash;
 ?>
-<div class="posts form">
+<?php $this->extend('/Admin/Common/form'); ?>
+
+<?php
+$this->assign('title', __d('rear_engine', 'Settings'));
+
+$this->start('content_title');
+	echo $this->Html->tag('span', $this->Html->tag('i', '', [ 'class' => 'fa fa-wrench']), ['class' => 'icon']);
+$this->end();
+?>
+
 <?= $this->Form->create('Setting'); ?>
-	<?php
-	foreach ($settings as $i=>$setting){
-		$label = explode('.', $setting->key);
-		$section = 'App';
-		if (count($label) > 1)
-			$section = $label[0];
-		unset($label[0]);
+<?php
+foreach ($settings as $i => $setting){
+	$label = explode('.', $setting->key);
+	$section = 'App';
+	if (count($label) > 1)
+		$section = $label[0];
+	unset($label[0]);
 
-		$options = [
-			'type' => 'text',
-			'label' => Inflector::humanize(implode("_", $label))
-		];
-		if(is_array($setting->options)){
-			$options = Hash::merge($options, $setting->options);
-		}
-
-		if (!empty($setting->type)){
-			$options['type'] = $setting->type;
-			if(($options['type'] == 'checkbox')&&($setting->value == 1)){
-				$options['checked'] = 'checked';
-				$options['style'] = false;
-			} elseif(($options['type'] == 'radio')) {
-				$options['style'] = false;
-			}
-		}
-		if(!empty($setting->title)){
-			$options['label'] = $setting->title;
-			$options['legend'] = true;
-		}
-		if(!empty($setting->description))
-			$options['placeholder'] = $setting->description;
-
-		$options['value'] = $setting->value;
-		if(!empty($setting->value))
-			$options['value'] = $setting->value;
-
-
-		$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
-		$outputCell = 'RearEngine.Setting';
-		if(!empty($setting->cell)) $outputCell = $setting->cell;
-		$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
-		$inputs[$section][] = $id.$input;
+	$options = [
+		'type' => 'text',
+		'label' => Inflector::humanize(implode("_", $label))
+	];
+	if(is_array($setting->options)){
+		$options = Hash::merge($options, (array)$setting->options);
 	}
-	?>
-	<?= $this->Html->link('', '#', ['id' => 'settings_top'])?>
-	<fieldset>
-		<legend><?= __d('rear_engine', 'Settings'); ?></legend>
 
-		<nav class="admin-menu">
-			<ul>
-			<?php
-			foreach ($inputs as $scope=>$fields){
-				echo $this->Html->tag('li',
-					$this->Html->link($scope, ['action' => 'index', '#' => Inflector::slug($scope)])
-				);
-			}
-			?>
-			</ul>
-		</nav>
-		<?php
-		foreach ($inputs as $scope=>$fields){
-		    echo $this->Html->tag('h3',
-		        $this->Html->link($scope, '#', ['id' => Inflector::slug($scope)])
-		        .$this->Html->link(
-			        __d('rear_engine', '#Top'),
-			        ['action' => 'index', '#' => 'settings_top'],
-			        ['style' => 'float:right;font-size:12px;']
-		        )
-		    );
-		    echo $this->Html->div('', implode("\n", $fields));
-		}
-		echo $this->Form->submit(__d('rear_engine', 'Save settings'), array(
+	if(!empty($setting->title))
+		$options['label'] = $setting->title;
+	if(!empty($setting->description))
+		$options['help'] = $setting->description;
+
+	$options['value'] = $setting->value;
+	if(!empty($setting->value))
+		$options['value'] = $setting->value;
+
+
+	$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
+	$outputCell = 'RearEngine.Setting';
+	if(!empty($setting->cell)) $outputCell = $setting->cell;
+	$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
+
+	$inputs[$section][] = $id.$input;
+}
+
+$i = 0;
+$tabs = $tabsContent = [];
+foreach ($inputs as $scope=>$fields){
+    $tabOptions = [];
+    if($i == 0) $tabOptions['class'] = 'active';
+    $tabs[] = $this->Html->tag('li',
+        $this->Html->link($scope,
+            '#'.$scope,
+            ['role' => 'tab', 'data-toggle' => 'tab']
+        ),
+        $tabOptions
+    );
+    $fields = array_chunk($fields, ceil(count($fields)/2));
+    foreach($fields as $j=>$part){
+        $fields[$j] = $this->Html->div('col-md-6 col-xs-12', implode("\n", $part));
+    }
+    $tabsContent[] = $this->Html->div('tab-pane fade'.(($i==0) ? ' in active' : ''),
+        $this->Html->div('row', implode("\n", $fields)),
+        ['id' => $scope]
+    );
+    $i++;
+}
+
+echo $this->Html->tag('ul', implode("\n", $tabs), ['class' => 'nav nav-tabs', 'role' => 'tablist']);
+echo $this->Html->div('tab-content', implode("\n", $tabsContent));
+?>
+
+<div class="btn-group pull-right form-actions">
+	<?php
+		echo $this->Form->submit(__d('muffin', 'Save settings'), array(
 			'name' => 'save',
+		    'div' => false,
+		    'class' => 'btn btn-sm btn-primary',
 		));
-		?>
-	</fieldset>
+		echo $this->Html->link(__d('muffin', 'Cancel'),
+			array('controller'=>'homepages', 'action' => 'home'),
+			array('class' => 'btn btn-sm btn-default')
+		);
+	?>
+</div>
 <?= $this->Form->end(); ?>
+
+<?php $this->start('actions'); ?>
+<div class="btn-group">
+	<?php echo $this->Html->link(__d('rear_engine', 'Dashboard'), array('controller'=>'Dashboards', 'action' => 'index'),array('class' => 'btn btn-primary')); ?>
 </div>
-<div class="actions">
-	<h3><?= __('Actions'); ?></h3>
-	<ul>
-		<li><?= $this->Html->link(__d('rear_engine', 'Dashboard'), ['controller' => 'Dashboards', 'action' => 'index']); ?></li>
-	</ul>
-</div>
+<?php $this->end(); ?>

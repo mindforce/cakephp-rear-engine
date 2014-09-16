@@ -21,9 +21,9 @@ use Cake\Utility\Inflector;
 <table class="table">
 	<tr>
 	<?php foreach ($fields as $field): ?>
-	<th><?= "<?= \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+	<th><?= "<?= \$this->Paginator->sort('{$field}') ?>"; ?></th>
 	<?php endforeach; ?>
-	<th class="actions"><?= "<?= __('Actions'); ?>"; ?></th>
+	<th class="actions"><?= "<?= __('Actions') ?>"; ?></th>
 	</tr>
 	<?php
 	echo "<?php foreach (\${$pluralVar} as \${$singularVar}): ?>\n";
@@ -34,22 +34,22 @@ use Cake\Utility\Inflector;
 				foreach ($associations['BelongsTo'] as $alias => $details) {
 					if ($field === $details['foreignKey']) {
 						$isKey = true;
-						echo "\t\t<td>\n\t\t\t<?= \${$singularVar}->has('{$details['property']}') ? \$this->Html->link(\${$singularVar}->{$details['property']}->{$details['displayField']}, ['controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}->{$details['property']}->{$details['primaryKey'][0]}]) : ''; ?>\n\t\t</td>\n";
+						echo "\t\t<td>\n\t\t\t<?= \${$singularVar}->has('{$details['property']}') ? \$this->Html->link(\${$singularVar}->{$details['property']}->{$details['displayField']}, ['controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}->{$details['property']}->{$details['primaryKey'][0]}]) : '' ?>\n\t\t</td>\n";
 						break;
 					}
 				}
 			}
 			if ($isKey !== true) {
-				echo "\t\t<td><?= h(\${$singularVar}->{$field}); ?>&nbsp;</td>\n";
+				echo "\t\t<td><?= h(\${$singularVar}->{$field}) ?>&nbsp;</td>\n";
 			}
 		}
 
 		$pk = "\${$singularVar}->{$primaryKey[0]}";
 
 		echo "\t\t<td class=\"actions\">\n";
-		echo "\t\t\t<?= \$this->Html->link(__('View'), ['action' => 'view', {$pk}]); ?>\n";
-		echo "\t\t\t<?= \$this->Html->link(__('Edit'), ['action' => 'edit', {$pk}]); ?>\n";
-		echo "\t\t\t<?= \$this->Form->postLink(__('Delete'), ['action' => 'delete', {$pk}], ['confirm' => __('Are you sure you want to delete # %s?', {$pk})]); ?>\n";
+		echo "\t\t\t<?= \$this->Html->link(__('View'), ['action' => 'view', {$pk}], ['class' => 'btn btn-primary', 'icon' => 'fa-eye']) ?>\n";
+		echo "\t\t\t<?= \$this->Html->link(__('Edit'), ['action' => 'edit', {$pk}], ['class' => 'btn btn-warning', 'icon' => 'fa-edit']) ?>\n";
+		echo "\t\t\t<?= \$this->Html->link(__('Delete'), ['action' => 'delete', {$pk}], ['title' => __('Are you sure you want to delete # {0}?', {$pk}), 'class' => 'btn btn-danger btn-confirmation', 'icon' => 'fa-trash-o']) ?>\n";
 		echo "\t\t</td>\n";
 	echo "\t</tr>\n";
 
@@ -58,19 +58,19 @@ use Cake\Utility\Inflector;
 </table>
 
 <?= "<?php \$this->start('actions'); ?>\n"; ?>
-<ul>
-	<li><?= "<?= \$this->Html->link(__('New " . $singularHumanName . "'), ['action' => 'add']); ?>"; ?></li>
+<div class="btn-group">
+	<?= "<?= \$this->Html->link(__('New " . $singularHumanName . "'), ['action' => 'add'], ['class' => 'btn btn-primary']); ?>"; ?>
 <?php
 	$done = [];
 	foreach ($associations as $type => $data) {
 		foreach ($data as $alias => $details) {
 			if ($details['controller'] != $this->name && !in_array($details['controller'], $done)) {
-				echo "\t<li><?= \$this->Html->link(__('List " . Inflector::humanize($details['controller']) . "'), ['controller' => '{$details['controller']}', 'action' => 'index']); ?> </li>\n";
-				echo "\t<li><?= \$this->Html->link(__('New " . Inflector::humanize(Inflector::singularize(Inflector::underscore($alias))) . "'), ['controller' => '{$details['controller']}', 'action' => 'add']); ?> </li>\n";
+				echo "\t<?= \$this->Html->link(__('List " . Inflector::humanize($details['controller']) . "'), ['controller' => '{$details['controller']}', 'action' => 'index'], ['class' => 'btn btn-default']) ?> \n";
+				echo "\t<?= \$this->Html->link(__('New " . Inflector::humanize(Inflector::singularize(Inflector::underscore($alias))) . "'), ['controller' => '{$details['controller']}', 'action' => 'add'], ['class' => 'btn btn-default']) ?> \n";
 				$done[] = $details['controller'];
 			}
 		}
 	}
 ?>
-</ul>
+</div>
 <?= "<?php \$this->end(); ?>"; ?>

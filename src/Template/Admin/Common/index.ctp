@@ -23,44 +23,98 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 ?>
 
 <div class="<?php echo Inflector::slug(Inflector::underscore($this->name), '-').' '.str_replace('admin_', '', $this->request->params['action']); ?>">
-	<?php if ($titleBlock = $this->fetch('title')): ?>
-	    <h2>
-			<?= $titleBlock ?>
-			<?php if ($panelTitleBlock = $this->fetch('content_header')): ?>
-				<small><?= $panelTitleBlock ?></small>
-			<?php endif; ?>
-	    </h2>
-	<?php endif; ?>
-	<?php if ($searchBlock = $this->fetch('search')): ?>
-	    <div class="search">
-			<?= $searchBlock; ?>
+	<?php if($this->fetch('title')||$this->fetch('actions')): ?>
+	<div class="row">
+	    <?php if ($titleBlock = $this->fetch('title')): ?>
+	    <div class="col-lg-7 col-md-6 col-xs-12">
+	        <h1 class="page-header pull-left"><?= $titleBlock ?></h1>
+        </div>
+	    <?php endif; ?>
+        <?php if ($actionsBlock = $this->fetch('actions')): ?>
+        <div class="col-lg-5 col-md-6 col-xs-12">
+            <div class="pull-right actions">
+                <?= $actionsBlock; ?>
+			</div>
 	    </div>
-    <?php endif; ?>
-
-    <?php if ($formCreateBlock = $this->fetch('form_create')): ?>
-        <?= $formCreateBlock; ?>
-    <?php endif; ?>
-	<?php if ($contentBlock = $this->fetch('content')): ?>
-		<?= $contentBlock; ?>
+        <?php endif; ?>
+	</div>
 	<?php endif; ?>
-    <?php if ($formEndBlock = $this->fetch('form_end')): ?>
-        <?= $formEndBlock; ?>
-    <?php endif; ?>
 
-	<?php if ($pagingBlock = $this->fetch('paging')): ?>
-		<?php echo $pagingBlock; ?>
-	<?php else: ?>
-		<?php echo $this->element('RearEngine.../Admin/Element/paginator'); ?>
-	<?php endif; ?>
+	<div class="row">
+	    <div class="col-lg-12">
+            <?php if($this->fetch('content_header')): ?>
+		        <div class="panel panel-default">
+			        <?php if (($this->fetch('content_header'))||($this->fetch('search'))): ?>
+			        <div class="panel-heading">
+				        <?php if ($panelTitleBlock = $this->fetch('content_header')): ?>
+						<div class="pull-left" style="margin-right: 15px;">
+				            <h5><?= $panelTitleBlock; ?></h5>
+						</div>
+				        <?php endif; ?>
+				        <?php if ($searchBlock = $this->fetch('search')): ?>
+				        <div class="row pull-left">
+				        	<div class="col-lg-12">
+				        		<?= $searchBlock; ?>
+				        	</div>
+				        </div>
+				        <?php endif; ?>
+				        <div class="clearfix"></div>
+	                </div>
+	                <?php endif; ?>
+			        <div class="panel-body">
+				        <?php if ($formCreateBlock = $this->fetch('form_create')): ?>
+	                        <?= $formCreateBlock; ?>
+	                    <?php endif; ?>
+						<?php if ($contentBlock = $this->fetch('content')): ?>
+							<?= $contentBlock; ?>
+						<?php endif; ?>
+						<?php if ($formEndBlock = $this->fetch('form_end')): ?>
+							<?= $formEndBlock; ?>
+						<?php endif; ?>
+
+				        <div class="row">
+			                <div class="col-lg-12">
+			                    <?php if ($pagingBlock = $this->fetch('paging')): ?>
+			                        <?php echo $pagingBlock; ?>
+			                    <?php else: ?>
+			                        <?php echo $this->element('RearEngine.../Admin/Element/paginator'); ?>
+			                    <?php endif; ?>
+			                </div>
+			            </div>
+					</div>
+				</div>
+			<?php else: ?>
+	            <?php if ($searchBlock = $this->fetch('search')): ?>
+		        <div class="row" style="margin-bottom:20px;">
+		            <div class="col-lg-12">
+		                <?= $searchBlock; ?>
+		            </div>
+		        </div>
+		        <?php endif; ?>
+
+	            <?php if ($formCreateBlock = $this->fetch('form_create')): ?>
+                    <?= $formCreateBlock; ?>
+                <?php endif; ?>
+				<?php if ($contentBlock = $this->fetch('content')): ?>
+					<?= $contentBlock; ?>
+				<?php endif; ?>
+	            <?php if ($formEndBlock = $this->fetch('form_end')): ?>
+                    <?= $formEndBlock; ?>
+                <?php endif; ?>
+
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <?php if ($pagingBlock = $this->fetch('paging')): ?>
+	                        <?php echo $pagingBlock; ?>
+	                    <?php else: ?>
+	                        <?php echo $this->element('RearEngine.../Admin/Element/paginator'); ?>
+	                    <?php endif; ?>
+	                </div>
+	            </div>
+			<?php endif; ?>
+		</div>
+	</div>
 </div>
-
-<?php if ($actionsBlock = $this->fetch('actions')): ?>
-<div class="actions">
-	<h3><?= __('Actions'); ?></h3>
-	<?= $actionsBlock; ?>
-</div>
-<?php endif; ?>
-
 <?php if ($modalBlock = $this->fetch('modal')): ?>
 	<?= $modalBlock; ?>
 <?php endif; ?>

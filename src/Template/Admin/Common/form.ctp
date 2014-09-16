@@ -23,36 +23,60 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 }
 ?>
 
-<div class="<?php echo Inflector::slug(Inflector::underscore($this->name), '-').' form '.str_replace('admin_', '', $this->request->params['action']); ?>">
-	<?php if ($formCreateBlock = $this->fetch('form_create')): ?>
-		<?= $formCreateBlock; ?>
+<div class="<?php echo Inflector::slug(Inflector::underscore($this->name), '-').' '.str_replace('admin_', '', $this->request->params['action']); ?>">
+	<?php if($this->fetch('title')||$this->fetch('actions')): ?>
+	<div class="row">
+	    <?php if ($titleBlock = $this->fetch('title')): ?>
+        <div class="col-lg-7 col-md-6 col-xs-12">
+	        <h1 class="page-header pull-left"><?= $titleBlock ?></h1>
+        </div>
+	    <?php endif; ?>
+        <?php if ($actionsBlock = $this->fetch('actions')): ?>
+	    <div class="col-lg-5 col-md-6 col-xs-12">
+		    <div class="pull-right actions">
+		        <?= $actionsBlock; ?>
+			</div>
+	    </div>
+        <?php endif; ?>
+	</div>
 	<?php endif; ?>
-	<fieldset>
-		<?php if ($titleBlock = $this->fetch('title')): ?>
-		    <legend>
-				<?= $titleBlock ?>
-				<?php if ($panelTitleBlock = $this->fetch('content_header')): ?>
-					<small><?= $panelTitleBlock ?></small>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<?php if ($this->fetch('form_create')&&($this->fetch('form_end'))): ?>
+				<?php if ($formCreateBlock = $this->fetch('form_create')): ?>
+					<?= $formCreateBlock; ?>
 				<?php endif; ?>
-		    </legend>
-		<?php endif; ?>
+				<div class="panel panel-default">
+				<?php if ($contentTitleBlock = $this->fetch('content_header')): ?>
+					<div class="panel-heading">
+						<?= $contentTitleBlock; ?>
+					</div>
+				<?php endif; ?>
+					<div class="panel-body">
+						<?php if ($contentBlock = $this->fetch('content')): ?>
+							<?= $contentBlock; ?>
+						<?php endif; ?>
+						<div class="clearfix"></div>
+						<?php if ($formActionsBlock = $this->fetch('form_actions')): ?>
+							<?= $formActionsBlock; ?>
+						<?php else: ?>
+							<?= ''; //TODO: unified actions buttons group here ?>
+						<?php endif; ?>
+					</div>
+				</div>
 
-		<?php if ($contentBlock = $this->fetch('content')): ?>
-			<?= $contentBlock; ?>
-		<?php endif; ?>
-	</fieldset>
-
-    <?php if ($formEndBlock = $this->fetch('form_end')): ?>
-        <?= $formEndBlock; ?>
-    <?php endif; ?>
+				<?php if ($formEndBlock = $this->fetch('formEnd')): ?>
+					<?= $formEndBlock; ?>
+				<?php endif; ?>
+			<?php else: ?>
+				<?php if ($contentBlock = $this->fetch('content')): ?>
+					<?= $contentBlock; ?>
+				<?php endif; ?>
+			<?php endif; ?>
+		</div>
+	</div>
 </div>
-
-<?php if ($actionsBlock = $this->fetch('actions')): ?>
-<div class="actions">
-	<h3><?= __('Actions'); ?></h3>
-	<?= $actionsBlock; ?>
-</div>
-<?php endif; ?>
 
 <?php if ($modalBlock = $this->fetch('modal')): ?>
 	<?= $modalBlock; ?>

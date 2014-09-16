@@ -41,7 +41,7 @@ class NavigationCell extends Cell {
 	public function display($block = null) {
 		if(!empty($block)){
 			$this->set('menu', Configure::read('App.admin.menu.'.$block));
-			$this->set('block', $block);
+			$this->template = $block;
 		}
 	}
 

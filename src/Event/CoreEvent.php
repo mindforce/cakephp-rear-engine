@@ -16,7 +16,7 @@ use Cake\Core\Plugin;
 use Cake\Core\Configure;
 use Cake\Log\Log;
 
-class RearEngineCoreEvent implements EventListener {
+class CoreEvent implements EventListener {
 
     public function implementedEvents() {
         return array(
@@ -32,7 +32,7 @@ class RearEngineCoreEvent implements EventListener {
 		if (isset($controller->request->params['prefix'])
 			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
 
-			$controller->theme = 'RearEngine';
+			//$controller->theme = 'Garderobe';
 			if($theme = Configure::read('App.admin.theme'))
 				if (Plugin::loaded($theme)) $controller->theme = $theme;
 

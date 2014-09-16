@@ -45,13 +45,21 @@ class AdminMenuHelper extends Helper {
 			if(!isset($menu['options'])) $menu['options'] = [];
 			$isDropdown = false;
 			$liOptions = ['class' => ''];
+			if(($level == 0)&&isset($menu['options']['dropdown'])&&!empty($menu['options']['dropdown'])){
+				$isDropdown = true;
+				$liOptions['class'] .= 'dropdown';
+			}
 
 			if(!isset($menu['type'])) $menu['type'] = 'link';
 			$block = $this->{$menu['type']}($menu, $level);
 
 			$nextLevel = $level+1;
 			if(isset($menu['children'])&&!empty($menu['children'])&&($nextLevel < 3)){
-				$block .= $this->render($menu['children'], $nextLevel);
+				$childrenOptions = ['class' => 'nav nav-'.$this->_levels[$nextLevel].'-level'];
+				if($isDropdown)
+					$childrenOptions = ['class' => 'dropdown-menu '.$menu['options']['dropdown']];
+
+				$block .= $this->render($menu['children'], $nextLevel, $childrenOptions);
 			}
 
 			$liOptions['class'] .= $class;
@@ -66,10 +74,35 @@ class AdminMenuHelper extends Helper {
 
 	protected function link($link, $level = 0){
 
+		$isDropdown = false;
+		if(($level == 0)&&isset($link['options']['dropdown'])&&!empty($link['options']['dropdown']))
+			$isDropdown = true;
+
+		if(isset($link['options']['icon'])){
+			$link['title'] = $this->Html->tag('i',
+				'',
+				['class' => $link['options']['icon'].' fa-fw']
+			).' '.$link['title'];
+		}
+
 		if(!isset($link['url']))
 			$link['url'] = '#';
 
+		if(isset($link['children'])&&!empty($link['children'])){
+			$pointer = 'arrow';
+			if($isDropdown) $pointer = 'fa-caret-down';
+			$link['title'] .= $this->Html->tag('span', '', ['class' => 'fa '.$pointer]);
+
+		}
+
 		$aOptions = ['escape' => false];
+		if($isDropdown){
+			$aOptions = Hash::merge($aOptions, [
+				'class' => 'dropdown-toggle',
+				'data-toggle' => 'dropdown'
+			]);
+			$link['url'] = '#';
+		}
 
 		return $this->Html->link($link['title'], $link['url'], $aOptions);
 

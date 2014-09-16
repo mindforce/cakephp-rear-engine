@@ -1,6 +1,6 @@
 {
 	"name": "iteam-pro/rear_engine",
-	"description": "CakePHP UI plugin",
+	"description": "CakePHP Admin plugin",
 	"homepage": "http://iteam-pro.com",
 	"keywords": ["cakephp", "ui"],
 	"type": "cakephp-plugin",
@@ -18,15 +18,20 @@
 	"minimum-stability": "dev",
 	"require": {
 		"cakephp/cakephp": "~3.0",
-		"cakephp/acl": "dev-master"
+		"iteam-pro/garderobe": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
 	},
 	"autoload": {
 		"psr-4": {
-			"RearEngine\\": "src",
+			"RearEngine\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
 			"RearEngine\\Test\\": "tests"
 		}
 	}
+
 }
