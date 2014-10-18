@@ -1,2 +1,2 @@
 <?php
-echo $this->Form->input($key, $options);
+echo $this->Form->input($path, $options);

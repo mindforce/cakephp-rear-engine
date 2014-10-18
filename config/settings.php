@@ -2,14 +2,14 @@
 $config = [
     [
         'plugin' => 'RearEngine',
-        'key' => 'Cache.default.duration',
+        'path' => 'Cache.default.duration',
         'title' => 'Cache lifetime',
         'description' => 'in seconds',
         'default' => '300',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Cache.default.className',
+        'path' => 'Cache.default.className',
         'title' => 'Cache engine',
         'description' => 'Choose engine for cache storage (default: File). Always choose <strong>File</strong> if you are not sure in other options',
         'cell' => 'RearEngine.CacheEngine',
@@ -28,14 +28,14 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Cache.default.probability',
+        'path' => 'Cache.default.probability',
         'title' => 'Cache probability',
         'description' => 'in seconds',
         'default' => '100',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Cache.check',
+        'path' => 'Cache.check',
         'title' => 'Static cache',
         'description' => 'Enable full page caching. Usable for huge sites but may cache dynamic blocks',
         'default' => '0',
@@ -49,7 +49,7 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Meta.description',
+        'path' => 'Meta.description',
         'title' => 'Meta description',
         'default' => 'My site for any people',
         'options' => [
@@ -58,13 +58,13 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Meta.generator',
+        'path' => 'Meta.generator',
         'title' => 'Meta generator',
         'default' => 'RearEngine - helpful plugin for apps bakers',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Meta.keywords',
+        'path' => 'Meta.keywords',
         'title' => 'Meta keywords',
         'default' => 'RearEngine, CakePHP admin, plugin',
 		'options' => [
@@ -73,13 +73,13 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Meta.robots',
+        'path' => 'Meta.robots',
         'title' => 'Robots directive',
         'default' => 'index, follow',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Session.defaults',
+        'path' => 'Session.defaults',
         'title' => 'Session engine',
         'description' => 'Choose engine for session storage. Database is prefered for small sites. PHP for big sites under heavy traffik',
         'default' => 'php',
@@ -93,14 +93,14 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Session.timeout',
+        'path' => 'Session.timeout',
         'title' => 'Session timeout',
         'description' => 'in minutes',
         'default' => '15',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'debug',
+        'path' => 'debug',
         'title' => 'Debug mode',
         'description' => 'Choose debug level for your site (default: File). If your site is ready for visitors, please choose <strong>Production</strong>.  <strong>Debug</strong> recommended if you want to track errors.',
         'default' => '1',
@@ -114,13 +114,13 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'App.theme',
+        'path' => 'App.theme',
         'title' => 'Frontend theme',
 	    'hidden' => true,
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'App.status',
+        'path' => 'App.status',
         'title' => 'Enabled for visitors',
         'default' => '1',
         'options' => [
@@ -133,7 +133,7 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'App.timezone',
+        'path' => 'App.timezone',
         'title' => 'Site timezone',
         'description' => 'zero (0) for GMT',
         'default' => '0',
@@ -174,13 +174,13 @@ $config = [
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'Meta.title',
+        'path' => 'Meta.title',
         'title' => 'Default site title',
         'default' => 'My Site',
     ],
     [
         'plugin' => 'RearEngine',
-        'key' => 'App.admin.theme',
+        'path' => 'App.admin.theme',
         'cell' => 'RearEngine.Theme',
         'default' => 'RearEngine',
         'hidden' => true,

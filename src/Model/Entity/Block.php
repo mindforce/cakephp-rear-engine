@@ -4,9 +4,9 @@ namespace RearEngine\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Setting Entity.
+ * Block Entity.
  */
-class Setting extends Entity {
+class Block extends Entity {
 
 /**
  * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -14,9 +14,11 @@ class Setting extends Entity {
  * @var array
  */
 	protected $_accessible = [
-		'plugin' => true,
-		'path' => true,
-		'value' => true,
+		'title' => true,
+		'slug' => true,
+		'admin' => true,
+		'cell_count' => true,
+		'cells' => true,
 	];
 
 }

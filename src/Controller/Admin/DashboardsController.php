@@ -19,13 +19,25 @@ use RearEngine\Controller\AppController;
  */
 class DashboardsController extends AppController {
 
+	public $helpers = ['RearEngine.Block'];
+
 /**
  * Index method
  *
  * @return void
  */
 	public function index() {
-		$this->render('/Pages/home');
+		$this->loadModel('RearEngine.Blocks');
+		$blocks = $this->Blocks->find('all')
+			->contain([
+				'Cells' => function ($q) {
+					return $q->where(['Cells.state' => true]);
+			    }
+			])->where([
+				'Blocks.admin' => true,
+			]);
+
+		$this->set('blocks', $blocks);
 	}
 
 }

@@ -121,9 +121,11 @@ echo "\t\t<?php foreach (\${$singularVar}->{$details['property']} as \${$otherSi
 			$otherPk = "\${$otherSingularVar}->{$details['primaryKey'][0]}";
 
 			echo "\t\t\t<td class=\"actions\">\n";
-			echo "\t\t\t\t<?= \$this->Html->link(__('View'), ['controller' => '{$details['controller']}', 'action' => 'view', {$otherPk}], ['class' => 'btn btn-primary', 'icon' => 'fa-eye']); ?>\n";
-			echo "\t\t\t\t<?= \$this->Html->link(__('Edit'), ['controller' => '{$details['controller']}', 'action' => 'edit', {$otherPk}], ['class' => 'btn btn-warning', 'icon' => 'fa-edit']); ?>\n";
-			echo "\t\t\t\t<?= \$this->Form->postLink(__('Delete'), ['controller' => '{$details['controller']}', 'action' => 'delete', {$otherPk}], ['confirm' => __('Are you sure you want to delete # %s?', {$otherPk}), 'class' => 'btn btn-danger', 'icon' => 'fa-trash-o']); ?>\n";
+			echo "\t\t\t\t<div class=\"btn-group btn-group-sm\">\n";
+			echo "\t\t\t\t\t<?= \$this->Html->link(__('View'), ['controller' => '{$details['controller']}', 'action' => 'view', {$otherPk}], ['class' => 'btn btn-primary', 'icon' => 'fa-eye']); ?>\n";
+			echo "\t\t\t\t\t<?= \$this->Html->link(__('Edit'), ['controller' => '{$details['controller']}', 'action' => 'edit', {$otherPk}], ['class' => 'btn btn-warning', 'icon' => 'fa-edit']); ?>\n";
+			echo "\t\t\t\t\t<?= \$this->Form->postLink(__('Delete'), ['controller' => '{$details['controller']}', 'action' => 'delete', {$otherPk}], ['confirm' => __('Are you sure you want to delete # %s?', {$otherPk}), 'class' => 'btn btn-danger', 'icon' => 'fa-trash-o']); ?>\n";
+			echo "\t\t\t\t</div>\n";
 			echo "\t\t\t</td>\n";
 		echo "\t\t</tr>\n";
 

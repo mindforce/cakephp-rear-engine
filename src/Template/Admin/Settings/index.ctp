@@ -25,7 +25,7 @@ $this->end();
 <?= $this->Form->create('Setting'); ?>
 <?php
 foreach ($settings as $i => $setting){
-	$label = explode('.', $setting->key);
+	$label = explode('.', $setting->path);
 	$section = 'App';
 	if (count($label) > 1)
 		$section = $label[0];
@@ -52,7 +52,7 @@ foreach ($settings as $i => $setting){
 	$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
 	$outputCell = 'RearEngine.Setting';
 	if(!empty($setting->cell)) $outputCell = $setting->cell;
-	$input = $this->cell($outputCell, ['key' => "Setting.$i.value", 'options' => $options]);
+	$input = $this->cell($outputCell, ['path' => "Setting.$i.value", 'options' => $options]);
 
 	$inputs[$section][] = $id.$input;
 }
@@ -89,10 +89,10 @@ echo $this->Html->div('tab-content', implode("\n", $tabsContent));
 		echo $this->Form->submit(__d('muffin', 'Save settings'), array(
 			'name' => 'save',
 		    'div' => false,
-		    'class' => 'btn btn-sm btn-primary',
+		    'class' => 'btn btn-sm btn-success',
 		));
 		echo $this->Html->link(__d('muffin', 'Cancel'),
-			array('controller'=>'homepages', 'action' => 'home'),
+			array('controller'=>'dashboards', 'action' => 'index'),
 			array('class' => 'btn btn-sm btn-default')
 		);
 	?>

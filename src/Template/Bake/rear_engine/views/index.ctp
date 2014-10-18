@@ -47,9 +47,11 @@ use Cake\Utility\Inflector;
 		$pk = "\${$singularVar}->{$primaryKey[0]}";
 
 		echo "\t\t<td class=\"actions\">\n";
-		echo "\t\t\t<?= \$this->Html->link(__('View'), ['action' => 'view', {$pk}], ['class' => 'btn btn-primary', 'icon' => 'fa-eye']) ?>\n";
-		echo "\t\t\t<?= \$this->Html->link(__('Edit'), ['action' => 'edit', {$pk}], ['class' => 'btn btn-warning', 'icon' => 'fa-edit']) ?>\n";
-		echo "\t\t\t<?= \$this->Html->link(__('Delete'), ['action' => 'delete', {$pk}], ['title' => __('Are you sure you want to delete # {0}?', {$pk}), 'class' => 'btn btn-danger btn-confirmation', 'icon' => 'fa-trash-o']) ?>\n";
+		echo "\t\t\t<div class=\"btn-group btn-group-sm\">\n";
+		echo "\t\t\t\t<?= \$this->Html->link(__('View'), ['action' => 'view', {$pk}], ['class' => 'btn btn-primary', 'icon' => 'fa-eye']) ?>\n";
+		echo "\t\t\t\t<?= \$this->Html->link(__('Edit'), ['action' => 'edit', {$pk}], ['class' => 'btn btn-warning', 'icon' => 'fa-edit']) ?>\n";
+		echo "\t\t\t\t<?= \$this->Html->link(__('Delete'), ['action' => 'delete', {$pk}], ['title' => __('Are you sure you want to delete # {0}?', {$pk}), 'class' => 'btn btn-danger btn-confirmation', 'icon' => 'fa-trash-o']) ?>\n";
+		echo "\t\t\t</div>\n";
 		echo "\t\t</td>\n";
 	echo "\t</tr>\n";
 

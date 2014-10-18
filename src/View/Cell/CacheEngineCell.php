@@ -24,13 +24,13 @@ class CacheEngineCell extends Cell {
  *
  * @return void
  */
-	public function display($key, $options = []) {
+	public function display($path, $options = []) {
 		foreach ($options['options'] as $engine=>$option){
 			if (!$this->validateEngine($engine)){
 				unset($options['options'][$engine]);
 			}
 		}
-		$this->set(compact('key', 'options'));
+		$this->set(compact('path', 'options'));
         //Bug: if Template/Cell/CacheEngine folder does not exists
         //Warning (512): Could not render cell - View file "/Cell/CacheEngine/../Setting/display.ctp" is missing. [CORE/src/View/Cell.php, line 168]
 		$this->template = '../Setting/display';

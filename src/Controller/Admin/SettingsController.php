@@ -41,14 +41,14 @@ class SettingsController extends AppController {
             });
 			if ($result) {
 				$settings = $this->Settings->find()
-					->combine('key', 'value')
+					->combine('path', 'value')
 					->toArray();
 				ksort($settings);
 				$settings = Hash::expand($settings);
 				Settings::dump('config.php', 'default', $settings);
 
 				$this->Flash->success('The settings has been saved.');
-				return $this->redirect(['action' => 'index']);
+				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('The settings could not be saved. Please, try again.');
 			}

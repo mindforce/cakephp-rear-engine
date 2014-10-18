@@ -15,7 +15,7 @@ namespace RearEngine\View\Cell;
 use Cake\View\Cell;
 use Cake\Core\Plugin;
 use Cake\Core\Configure;
-use Cake\Configure\Engine\PhpConfig;
+use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Log\Log;
 
 /**

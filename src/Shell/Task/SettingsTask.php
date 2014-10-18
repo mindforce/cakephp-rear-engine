@@ -13,7 +13,7 @@ namespace RearEngine\Shell\Task;
 
 use Cake\Shell\Task\BakeTask;
 use Cake\Datasource\ConnectionManager;
-use Cake\Configure\Engine\PhpConfig;
+use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Inflector;
 use Cake\Utility\Hash;
@@ -48,9 +48,24 @@ class SettingsTask extends BakeTask{
 	*/
 
     public function import(){
+	    $config = new PhpConfig();
+	    $settingsFile = 'settings.php';
+	    if(!empty($this->plugin))
+		    $settingsFile = $this->plugin.'.'.$settingsFile;
+        $data = $config->read($settingsFile);
 
-
-
+	    $settings = TableRegistry::get('RearEngine.Settings');
+	    foreach ($data as $row){
+		    if ((!isset($row['plugin'])||empty($row['plugin']))&&!empty($this->plugin)) {
+			    $row['plugin'] = $this->plugin;
+		    }
+		    $setting = $settings->newEntity([
+			    'plugin' => $row['plugin'],
+			    'path' => $row['path'],
+			    'value' => (isset($row['default']) ? $row['default'] : ''),
+		    ]);
+		    $settings->save($setting);
+	    }
     }
 
     public function get(){

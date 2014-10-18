@@ -37,26 +37,26 @@ class SettingsTable extends Table {
 			->allowEmpty('id', 'create')
 			->validatePresence('plugin', 'create')
 			->notEmpty('plugin')
-			->validatePresence('key', 'create')
-			->notEmpty('key')
+			->validatePresence('path', 'create')
+			->notEmpty('path')
 			->allowEmpty('value');
 
 		return $validator;
 	}
 
 	public function findExtended(Query $query, array $options = []) {
-		$mapper = function($setting, $key, $mapReduce) {
-			$prototype = $this->getSettingPrototype($setting->key, $setting->plugin);
+		$mapper = function($setting, $path, $mapReduce) {
+			$prototype = $this->getSettingPrototype($setting->path, $setting->plugin);
 			foreach ($prototype as $field=>$value){
 				$setting->{$field} = $value;
 			}
-			$mapReduce->emit($setting, $key);
+			$mapReduce->emit($setting, $path);
 		};
 		return $query->mapReduce($mapper);
 	}
 
 	public function findEditable(Query $query, array $options = []) {
-		$mapper = function($setting, $key, $mapReduce) {
+		$mapper = function($setting, $path, $mapReduce) {
 			$type = 'editable';
 			if($setting->hidden == true) $type = 'hidden';
 			$mapReduce->emitIntermediate($setting, $type);
@@ -67,7 +67,7 @@ class SettingsTable extends Table {
 		return $query->mapReduce($mapper, $reducer);
 	}
 
-	protected function getSettingPrototype($key, $plugin = null){
+	protected function getSettingPrototype($path, $plugin = null){
 		$defaults = [
 			'title' => null,
 			'description' => null,
@@ -83,7 +83,7 @@ class SettingsTable extends Table {
 			$input = $plugin.'.settings';
 		$settingPrtotypes = $settingsReader->read($input);
 
-		return array_merge($defaults, Hash::extract($settingPrtotypes, '{n}[key='.$key.']')[0]);
+		return array_merge($defaults, Hash::extract($settingPrtotypes, '{n}[path='.$path.']')[0]);
 	}
 
 

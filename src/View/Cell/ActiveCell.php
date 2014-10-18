@@ -4,9 +4,9 @@ namespace RearEngine\View\Cell;
 use Cake\View\Cell;
 
 /**
- * Setting cell
+ * AdminBlock cell
  */
-class SettingCell extends Cell {
+class ActiveCell extends Cell {
 
 /**
  * List of valid options that can be passed into this
@@ -21,8 +21,8 @@ class SettingCell extends Cell {
  *
  * @return void
  */
-	public function display($path, $options = []) {
-		$this->set(compact('path', 'options'));
+	public function admin($cell) {
+		$this->set('cell', $cell);
 	}
 
 }
