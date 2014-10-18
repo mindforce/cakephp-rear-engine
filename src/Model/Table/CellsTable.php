@@ -17,7 +17,7 @@ class CellsTable extends Table {
  * @return void
  */
 	public function initialize(array $config) {
-		$this->table('cells');
+		$this->table('rear_engine_cells');
 		$this->displayField('title');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');

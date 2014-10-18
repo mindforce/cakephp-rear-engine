@@ -55,18 +55,18 @@ class InitialMigration extends AbstractMigration
      */
     public function up()
     {
-	    $blocks =  $this->table('blocks');
+	    $blocks =  $this->table('rear_engine_blocks');
 	    $blocks->addColumn('title', 'string', ['limit' => 255])
             ->addColumn('slug', 'string', ['limit' => 255])
             ->addColumn('admin', 'boolean', ['null' => true])
             ->addColumn('created', 'datetime', ['null' => true])
             ->addColumn('modified', 'datetime', ['null' => true])
 		    ->addColumn('cell_count', 'integer', ['null' => true, 'default' => 0])
-		    ->addIndex(['slug'], array('unique' => true, 'name' => 'blocks_slug_idx'))
-		    ->addIndex(['slug', 'admin'], array('unique' => true, 'name' => 'blocks_slug_admin_idx'))
+		    ->addIndex(['slug'], array('unique' => true, 'name' => 'rear_engine_blocks_slug_idx'))
+		    ->addIndex(['slug', 'admin'], array('unique' => true, 'name' => 'rear_engine_blocks_slug_admin_idx'))
             ->save();
 
-	    $cells =  $this->table('cells');
+	    $cells =  $this->table('rear_engine_cells');
 	    $cells->addColumn('block_id', 'integer', ['default' => 0])
 			->addColumn('parent_id', 'integer', ['null' => true])
 		    ->addColumn('title', 'string', ['limit' => 255])
@@ -83,16 +83,16 @@ class InitialMigration extends AbstractMigration
 		    ->addColumn('visible_on', 'text', ['null' => true])
 		    ->addIndex(['slug'], array('unique' => true, 'name' => 'cells_slug_idx'))
 		    //->addForeignKey('block_id', 'blocks', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
-		    ->addIndex(['block_id', 'state'], array('unique' => false, 'name' => 'cells_block_id_state_admin_idx'))
-		    ->addIndex(['parent_id'], array('unique' => false, 'name' => 'cells_parent_id_idx'))
-		    ->addIndex(['visibility'], array('unique' => false, 'name' => 'cells_visibility_idx'))
+		    ->addIndex(['block_id', 'state'], array('unique' => false, 'name' => 'rear_engine_cells_block_id_state_admin_idx'))
+		    ->addIndex(['parent_id'], array('unique' => false, 'name' => 'rear_engine_cells_parent_id_idx'))
+		    ->addIndex(['visibility'], array('unique' => false, 'name' => 'rear_engine_cells_visibility_idx'))
 			->save();
 
-	    $settings =  $this->table('settings');
+	    $settings =  $this->table('rear_engine_settings');
 	    $settings->addColumn('plugin', 'string', ['limit' => 32, 'default' => 'App'])
 			->addColumn('path', 'string', ['limit' => 64])
 		    ->addColumn('value', 'text', ['null' => true])
-		    ->addIndex(['path'], array('unique' => true, 'name' => 'settings_key_idx'))
+		    ->addIndex(['path'], array('unique' => true, 'name' => 'rear_engine_settings_key_idx'))
 			->save();
 
 	    //Seed blocks table by default data
@@ -109,9 +109,9 @@ class InitialMigration extends AbstractMigration
      */
     public function down()
     {
-	    $this->dropTable('blocks');
-	    $this->dropTable('cells');
-	    $this->dropTable('settings');
+	    $this->dropTable('rear_engine_blocks');
+	    $this->dropTable('rear_engine_cells');
+	    $this->dropTable('rear_engine_settings');
 
     }
 }

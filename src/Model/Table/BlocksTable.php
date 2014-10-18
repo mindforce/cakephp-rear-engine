@@ -17,7 +17,7 @@ class BlocksTable extends Table {
  * @return void
  */
 	public function initialize(array $config) {
-		$this->table('blocks');
+		$this->table('rear_engine_blocks');
 		$this->displayField('title');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');

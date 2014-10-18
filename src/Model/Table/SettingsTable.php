@@ -19,7 +19,7 @@ class SettingsTable extends Table {
  * @return void
  */
 	public function initialize(array $config) {
-		$this->table('settings');
+		$this->table('rear_engine_settings');
 		$this->displayField('id');
 		$this->primaryKey('id');
 
