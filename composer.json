@@ -18,7 +18,8 @@
 	"minimum-stability": "dev",
 	"require": {
 		"cakephp/cakephp": "~3.0",
-		"iteam-pro/garderobe": "dev-master"
+		"cakephp/migrations": "*",
+		"iteam-pro/garderobe": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
