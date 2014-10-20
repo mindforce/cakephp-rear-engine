@@ -67,8 +67,8 @@ class AdminMenuHelper extends Helper {
 		}
 		return $this->Html->tag('ul', $html, $options);
 	}
-	protected function cell($cell, $level = 0){
 
+	protected function cell($cell, $level = 0){
 		return $this->_View->cell($cell['cell'], ['options' => $cell['options']]);
 	}
 
@@ -78,6 +78,10 @@ class AdminMenuHelper extends Helper {
 		if(($level == 0)&&isset($link['options']['dropdown'])&&!empty($link['options']['dropdown']))
 			$isDropdown = true;
 
+		if(!isset($link['title'])){
+			$link['title'] = '';
+			$link['options']['icon'] = 'fa fa-ellipsis-v';
+		}
 		if(isset($link['options']['icon'])){
 			$link['title'] = $this->Html->tag('i',
 				'',
