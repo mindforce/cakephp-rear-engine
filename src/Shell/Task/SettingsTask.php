@@ -11,7 +11,7 @@
  */
 namespace RearEngine\Shell\Task;
 
-use Cake\Shell\Task\BakeTask;
+use Bake\Shell\Task\BakeTask;
 use Cake\Datasource\ConnectionManager;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\ORM\TableRegistry;
@@ -130,4 +130,3 @@ class SettingsTask extends BakeTask{
     }
 
 }
-

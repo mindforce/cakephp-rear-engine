@@ -74,7 +74,7 @@ foreach ($inputs as $scope=>$fields){
         $fields[$j] = $this->Html->div('col-md-6 col-xs-12', implode("\n", $part));
     }
     $tabsContent[] = $this->Html->div('tab-pane fade'.(($i==0) ? ' in active' : ''),
-        $this->Html->div('row', implode("\n", $fields)),
+        $this->Html->div('row', $this->Html->tag('fieldset', implode("\n", $fields))),
         ['id' => $scope]
     );
     $i++;
