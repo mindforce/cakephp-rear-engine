@@ -10,14 +10,16 @@ production version will be released after the official release CakePHP**
 
 You can install RearEngine into your project using
 [composer](http://getcomposer.org).  If you're starting a new project, we
-recommend using the [app skeleton](https://github.com/cakephp/app) after 
+recommend using the [app skeleton](https://github.com/cakephp/app) after
 commit cakephp/app@4b20305260afa81b9792ad3fba2c737ab00c3860 as
 a starting point. For existing applications you can add the following to your
 `composer.json` file:
 
 	"require": {
-		"composer/installers": "dev-master",
-		"iteam-pro/rear_engine": "dev-master"
+		"php": ">=5.4.0",
+		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/plugin-installer": "*",
+		"mindforce/rear_engine": "dev-master"
 	}
 
 And run `php composer.phar update`
