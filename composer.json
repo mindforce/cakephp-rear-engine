@@ -1,26 +1,26 @@
 {
-	"name": "iteam-pro/rear_engine",
+	"name": "mindforce/rear_engine",
 	"description": "CakePHP Admin plugin",
-	"homepage": "http://iteam-pro.com",
+	"homepage": "http://mindforce.me",
 	"keywords": ["cakephp", "ui"],
 	"type": "cakephp-plugin",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "iTeam s.r.o.",
-			"homepage": "https://iteam-pro.com"
+			"name": "Denys Kyselov",
+			"homepage": "https://mindforce.me"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/iteam-pro/rear_engine/issues",
-		"source": "https://github.com/iteam-pro/rear_engine"
+		"issues": "https://github.com/mindforce/rear_engine/issues",
+		"source": "https://github.com/mindforce/rear_engine"
 	},
 	"minimum-stability": "dev",
 	"require": {
 		"cakephp/cakephp": "~3.0",
 		"cakephp/plugin-installer": "*",
 		"cakephp/migrations": "*",
-		"iteam-pro/garderobe": "*"
+		"mindforce/garderobe": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
