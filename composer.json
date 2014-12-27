@@ -1,5 +1,5 @@
 {
-	"name": "mindforce/rear_engine",
+	"name": "mindforce/cakephp-rear-engine",
 	"description": "CakePHP Admin plugin",
 	"homepage": "http://mindforce.me",
 	"keywords": ["cakephp", "ui"],
@@ -20,7 +20,7 @@
 		"cakephp/cakephp": "~3.0",
 		"cakephp/plugin-installer": "*",
 		"cakephp/migrations": "*",
-		"mindforce/garderobe": "*"
+		"mindforce/cakephp-garderobe": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
