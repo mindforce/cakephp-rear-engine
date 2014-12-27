@@ -12,8 +12,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/mindforce/rear_engine/issues",
-		"source": "https://github.com/mindforce/rear_engine"
+		"issues": "https://github.com/mindforce/cakephp-rear-engine/issues",
+		"source": "https://github.com/mindforce/cakephp-rear-engine"
 	},
 	"minimum-stability": "dev",
 	"require": {
