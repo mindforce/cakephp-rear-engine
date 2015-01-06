@@ -21,7 +21,7 @@
 		"cakephp/plugin-installer": "*",
 		"cakephp/migrations": "*",
 		"mindforce/cakephp-garderobe-bootstrap3": "*",
-		"mindforce/cakephp-garderobe-font-awesome": "*",
+		"mindforce/cakephp-garderobe-font-awesome": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
