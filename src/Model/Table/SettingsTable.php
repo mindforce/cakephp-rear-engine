@@ -16,7 +16,7 @@ use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
-use Cake\Configure\Engine\PhpConfig;
+use Cake\Core\Configure\Engine\PhpConfig;
 
 /**
  * Settings Model
@@ -46,9 +46,9 @@ class SettingsTable extends Table {
 		$validator
 			->add('id', 'valid', ['rule' => 'numeric'])
 			->allowEmpty('id', 'create')
-			->validatePresence('plugin', 'create')
+			->requirePresence('plugin', 'create')
 			->notEmpty('plugin')
-			->validatePresence('path', 'create')
+			->requirePresence('path', 'create')
 			->notEmpty('path')
 			->allowEmpty('value');
 

@@ -20,7 +20,8 @@
 		"cakephp/cakephp": "~3.0",
 		"cakephp/plugin-installer": "*",
 		"cakephp/migrations": "*",
-		"mindforce/cakephp-garderobe": "*"
+		"mindforce/cakephp-garderobe-bootstrap3": "*",
+		"mindforce/cakephp-garderobe-font-awesome": "*",
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"

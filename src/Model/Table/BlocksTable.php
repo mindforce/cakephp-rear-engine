@@ -48,14 +48,14 @@ class BlocksTable extends Table {
 		$validator
 			->add('id', 'valid', ['rule' => 'numeric'])
 			->allowEmpty('id', 'create')
-			->validatePresence('title', 'create')
+			->requirePresence('title', 'create')
 			->notEmpty('title')
-			->validatePresence('slug', 'create')
+			->requirePresence('slug', 'create')
 			->notEmpty('slug')
 			->add('admin', 'valid', ['rule' => 'boolean'])
 			->allowEmpty('admin')
 			->add('cell_count', 'valid', ['rule' => 'numeric'])
-			->validatePresence('cell_count', 'create')
+			->requirePresence('cell_count', 'create')
 			->notEmpty('cell_count');
 
 		return $validator;
