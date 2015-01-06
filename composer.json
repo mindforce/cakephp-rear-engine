@@ -2,12 +2,16 @@
 	"name": "mindforce/cakephp-rear-engine",
 	"description": "CakePHP Admin plugin",
 	"homepage": "http://mindforce.me",
-	"keywords": ["cakephp", "ui"],
+	"keywords": ["cakephp", "ui", "backend", "administration"],
 	"type": "cakephp-plugin",
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Denys Kyselov",
+			"homepage": "https://mindforce.me"
+		},
+		{
+			"name": "Mychailo Talimonchuk",
 			"homepage": "https://mindforce.me"
 		}
 	],
@@ -17,8 +21,9 @@
 	},
 	"minimum-stability": "dev",
 	"require": {
-		"cakephp/cakephp": "~3.0",
-		"cakephp/plugin-installer": "*",
+        "php": ">=5.4",
+        "cakephp/plugin-installer": "*",
+        "cakephp/cakephp": "3.0.x-dev",
 		"cakephp/migrations": "*",
 		"mindforce/cakephp-garderobe-bootstrap3": "*",
 		"mindforce/cakephp-garderobe-font-awesome": "*"
@@ -33,7 +38,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"RearEngine\\Test\\": "tests"
+			"RearEngine\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
 		}
 	}
 
