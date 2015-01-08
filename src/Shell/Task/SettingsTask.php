@@ -49,7 +49,7 @@ class SettingsTask extends BakeTask{
 
     public function import(){
 	    $config = new PhpConfig();
-	    $settingsFile = 'settings.php';
+	    $settingsFile = 'settings';
 	    if(!empty($this->plugin))
 		    $settingsFile = $this->plugin.'.'.$settingsFile;
         $data = $config->read($settingsFile);

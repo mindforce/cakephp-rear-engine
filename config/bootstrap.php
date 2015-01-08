@@ -21,9 +21,9 @@ Configure::write('App.paths.templates', array_merge(
 ));
 
 try {
-	Configure::load('config.php', 'default', true);
+	Configure::load('config', 'default', true);
 } catch (\Exception $e) {
-	//die('Unable to load Config/settings.php. Create it by copying RearEngine/src/Config/app.default.php to Config/app.php.');
+	//die('Unable to load Config/settings file.');
 }
 Configure::write('Routing.prefixes', ['admin']);
 //debug(Configure::read());

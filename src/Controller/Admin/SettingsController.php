@@ -13,7 +13,7 @@ namespace RearEngine\Controller\Admin;
 
 use RearEngine\Controller\AppController;
 use Cake\Utility\Hash;
-use RearEngine\Lib\Core\Settings;
+use RearEngine\Core\Settings;
 
 /**
  * Settings Controller
@@ -45,7 +45,7 @@ class SettingsController extends AppController {
 					->toArray();
 				ksort($settings);
 				$settings = Hash::expand($settings);
-				Settings::dump('config.php', 'default', $settings);
+				Settings::dump('config', 'default', $settings);
 
 				$this->Flash->success('The settings has been saved.');
 				$this->redirect(['action' => 'index']);

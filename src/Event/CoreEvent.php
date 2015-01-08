@@ -42,17 +42,17 @@ class CoreEvent implements EventListenerInterface {
 
 			foreach(Plugin::loaded() as $plugin){
 				try {
-					Configure::load($plugin.'.admin_menus.php', 'default', true);
+					Configure::load($plugin.'.admin_menus', 'default', true);
 				} catch (\Exception $e) {
 					if(Configure::read('debug'))
-						Log::write(LOG_ERR, 'Unable to load app '.$plugin.'/Config/admin_menus.php.');
+						Log::write(LOG_ERR, 'Unable to load app '.$plugin.'/Config/admin_menus config file');
 				}
 			}
 			try {
-				Configure::load('admin_menus.php', 'default', true);
+				Configure::load('admin_menus', 'default', true);
 			} catch (\Exception $e) {
 				if(Configure::read('debug'))
-					Log::write(LOG_ERR, 'Unable to load App/Config/admin_menus.php.');
+					Log::write(LOG_ERR, 'Unable to load App/Config/admin_menus config file.');
 			}
 
 		}

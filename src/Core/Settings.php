@@ -9,7 +9,7 @@
 * @since         0.0.1
 * @license       http://www.opensource.org/licenses/mit-license.php MIT License
 */
-namespace RearEngine\Lib\Core;
+namespace RearEngine\Core;
 
 use Cake\Error\Exception;
 use Cake\Core\Configure;
@@ -25,13 +25,13 @@ class Settings extends Configure {
  * ## Usage
  *
  * Given that the 'default' engine is an instance of PhpConfig.
- * Save specifide data in Configure format to the file `my_config.php`:
+ * Save specifide data in Configure format to the file `my_config`:
  *
- * `Configure::dump('my_config.php', 'default');`
+ * `Configure::dump('my_config', 'default');`
  *
  * Save only the error handling configuration:
  *
- * `Configure::dump('error.php', 'default', ['debug' => 0];`
+ * `Configure::dump('error', 'default', ['debug' => 0];`
  *
  * @param string $key The identifier to create in the config adapter.
  *   This could be a filename or a cache key depending on the adapter being used.
