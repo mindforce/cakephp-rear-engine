@@ -45,14 +45,14 @@ class CoreEvent implements EventListenerInterface {
 					Configure::load($plugin.'.admin_menus', 'default', true);
 				} catch (\Exception $e) {
 					if(Configure::read('debug'))
-						Log::write(LOG_ERR, 'Unable to load app '.$plugin.'/Config/admin_menus config file');
+						Log::warning('Unable to load app '.$plugin.'/Config/admin_menus config file', ['scope' => 'RearEngine plugin']);
 				}
 			}
 			try {
 				Configure::load('admin_menus', 'default', true);
 			} catch (\Exception $e) {
 				if(Configure::read('debug'))
-					Log::write(LOG_ERR, 'Unable to load App/Config/admin_menus config file.');
+					Log::warning('Unable to load App/Config/admin_menus config file.', ['scope' => 'RearEngine plugin']);
 			}
 
 		}
