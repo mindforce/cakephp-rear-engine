@@ -63,7 +63,7 @@ use Cake\Core\Configure;
 		</nav>
 
 		<div id="page-wrapper">
-			<?= $this->Session->flash(); ?>
+			<?= $this->Flash->render() ?>
 
 			<?= $this->fetch('content'); ?>
 		</div>
