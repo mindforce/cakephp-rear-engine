@@ -47,9 +47,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 			        <?php if (($this->fetch('content_header'))||($this->fetch('search'))): ?>
 			        <div class="panel-heading">
 				        <?php if ($panelTitleBlock = $this->fetch('content_header')): ?>
-						<div class="pull-left" style="margin-right: 15px;">
-				            <h5><?= $panelTitleBlock; ?></h5>
-						</div>
+						    <?= $panelTitleBlock; ?>
 				        <?php endif; ?>
 				        <?php if ($searchBlock = $this->fetch('search')): ?>
 				        <div class="row pull-left">

@@ -40,10 +40,9 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
         <?php endif; ?>
 	</div>
 	<?php endif; ?>
-
 	<div class="row">
 		<div class="col-xs-12">
-			<?php if ($this->fetch('form_create')&&($this->fetch('form_end'))): ?>
+            <?php if ($this->fetch('form_create')&&($this->fetch('form_end'))): ?>
 				<?php if ($formCreateBlock = $this->fetch('form_create')): ?>
 					<?= $formCreateBlock; ?>
 				<?php endif; ?>
@@ -66,7 +65,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 					</div>
 				</div>
 
-				<?php if ($formEndBlock = $this->fetch('formEnd')): ?>
+				<?php if ($formEndBlock = $this->fetch('form_end')): ?>
 					<?= $formEndBlock; ?>
 				<?php endif; ?>
 			<?php else: ?>
