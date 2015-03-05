@@ -11,4 +11,4 @@
 */
 ?>
 
-<?= $this->AdminMenu->render($menu, 0, ['class' => "nav navbar-top-links navbar-right"]); ?>
+<?= $this->AdminMenu->render($menu, 0, ['class' => "nav navbar-nav navbar-top-links navbar-right"]); ?>

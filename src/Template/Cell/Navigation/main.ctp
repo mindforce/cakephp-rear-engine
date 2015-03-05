@@ -10,10 +10,7 @@
 * @license       http://www.opensource.org/licenses/mit-license.php MIT License
 */
 ?>
-<div class="navbar-default navbar-static-side" role="navigation">
-	<div class="sidebar-collapse">
-		<?= $this->AdminMenu->render($menu, 0, ['class' => "nav", 'id' => 'side-menu']); ?>
-	</div>
-	<!-- /.sidebar-collapse -->
-</div>
+<nav id="sidebar-wrapper" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+    <?= $this->AdminMenu->render($menu, 0, ['class' => "nav nav-sidebar", 'id' => 'side-menu']); ?>
+</nav>
 <!-- /.navbar-static-side -->

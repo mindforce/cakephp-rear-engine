@@ -3,14 +3,8 @@
 /* ------------------------------- */
 
 body {
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: #f8f8f8;
-}
-
-@media(min-width:768px) {
-    body {
-        padding-top: 50px;
-    }
 }
 
 /* Wrappers */
@@ -23,30 +17,29 @@ body {
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
+    min-height: 600px;
     background-color: #fff;
 }
 
-@media(min-width:768px) {
-    #page-wrapper {
-        position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
-        min-height: 1300px;
-        border-left: 1px solid #e7e7e7;
-    }
-}
-
 .form-group>label {
-	margin-right: 5px;
+    margin-right: 5px;
 }
 .form-group.radio>label {
-	font-weight: bold;
-	padding-left: 0;
+    font-weight: bold;
+    padding-left: 0;
 }
 .form-group.radio>label.radio-inline {
-	font-weight: normal;
-	padding-left: 20px;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+.form-horizontal .form-control-static,
+.form-inline .form-control-static
+{
+    display: inline-block;
+}
+.panel-heading .form-group {
+    margin-bottom: 0;
 }
 
 /* Navigation */
@@ -54,7 +47,10 @@ body {
 /* ------------------------------- */
 
 /* Top Right Navigation Dropdown Styles */
-
+.navbar-default .navbar-toggle {
+    float: left;
+    margin: 13px 15px;
+}
 .navbar-top-links li {
     display: inline-block;
 }
@@ -110,83 +106,198 @@ body {
 }
 
 /* Sidebar Menu Styles */
-
-.navbar-static-side ul li {
-    border-bottom: 1px solid #e7e7e7;
+.navmenu, .navbar-offcanvas {
+    width: 250px;
 }
 
-.sidebar-search {
-    padding: 15px;
+.navmenu {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.arrow {
-    float: right;
+.navmenu li a {
+    display: block;
+    text-decoration: none;
+    color: #777;
 }
 
-.fa.arrow:before {
-    content: "\f104";
+.navmenu li a:hover {
+    text-decoration: none;
+    color: #333;
 }
 
-.active > a > .fa.arrow:before {
-    content: "\f107";
+.navmenu li a:active,
+.navmenu li a:focus {
+    text-decoration: none;
 }
 
-.nav-second-level li,
-.nav-third-level li {
-    border-bottom: none !important;
-}
-
-.nav-second-level li a {
+.navmenu li li a {
     padding-left: 37px;
 }
-
-.nav-third-level li a {
+.navmenu li li li a {
     padding-left: 52px;
-}
-
-@media(min-width:768px) {
-    .navbar-static-side {
-        z-index: 1;
-        position: absolute;
-        width: 250px;
-        margin-top: 51px;
-    }
-
-    .navbar-top-links .dropdown-messages,
-    .navbar-top-links .dropdown-tasks,
-    .navbar-top-links .dropdown-alerts {
-        margin-left: auto;
-    }
-}
-
-@media(max-height:600px) and (max-width:767px) {
-    .sidebar-collapse {
-        max-height: 300px;
-        overflow-y: scroll;
-    }
-}
-
-@media(max-height:400px) and (max-width:767px) {
-    .sidebar-collapse {
-        max-height: 200px;
-        overflow-y: scroll;
-    }
 }
 
 /* Additional styles */
 th.actions {
-	width: 250px;
+    width: 250px;
 }
 
 #page-wrapper .actions {
-	margin: 40px 0 20px;
+    margin: 40px 0 20px;
 }
 
 @media(max-width:991px) {
-	#page-wrapper .page-header {
-		margin: 20px 0 10px;
-	}
-	#page-wrapper .actions {
-		margin-top: 10px;
-	}
+    #page-wrapper .page-header {
+        margin: 20px 0 10px;
+    }
+    #page-wrapper .actions {
+        margin-top: 10px;
+    }
+}
+
+/* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
+.navbar-breadcrumb ul li {
+    padding: 15px 8px 15px 22px;
+    line-height: 20px;
+    vertical-align: bottom;
+}
+.navbar-breadcrumb ul li.first {
+    height: 50px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+.navbar-breadcrumb ul li a,
+.navbar-breadcrumb ul li a span
+{
+    display: block;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-breadcrumb li:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.navbar-breadcrumb li:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 2;
+}
+/* The responsive part */
+.navbar-breadcrumb > * > li span {
+    /* With less: .text-overflow(); */
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navbar-breadcrumb > * > li:nth-child(n+2) {
+    display:none;
+}
+
+/* === For phones =================================== */
+@media (max-width: 767px) {
+    .navbar-breadcrumb > * > li:nth-last-child(-n+1) {
+        display:inline-block;
+    }
+    .navbar-breadcrumb > * > li span {
+        max-width: 60px;
+    }
+}
+
+/* === For tablets ================================== */
+@media (min-width: 768px) and (max-width:991px) {
+    .navbar-breadcrumb > * > li:nth-last-child(-n+2) {
+        display:inline-block;
+    }
+    .navbar-breadcrumb > * > li span {
+        max-width: 100px;
+    }
+}
+
+/* === For desktops ================================== */
+@media (min-width: 992px) {
+    .navbar-breadcrumb > * > li:nth-last-child(-n+4) {
+        display:inline-block;
+    }
+    .navbar-breadcrumb > * > li span {
+        max-width: 170px;
+    }
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 50px;
+    }
+    #sidebar-wrapper {
+        margin-top: 50px;
+    }
+}
+@media(max-width:768px) {
+    body {
+        padding-top: 130px;
+    }
+    #sidebar-wrapper {
+        margin-top: 130px;
+    }
+}
+@media(min-width:992px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        min-height: 600px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+@media(min-width:768px) and (max-width:992px) {
+    #sidebar-toggle {
+        display:block;
+        position: absolute;
+        z-index: 1000;
+        margin: 8px 0;
+    }
+    .navbar-breadcrumb {
+        margin-left: 45px;
+    }
+}
+@media(max-width:768px) {
+    #sidebar-toggle {
+        display:block;
+        position: absolute;
+        z-index: 1000;
+    }
+    .navbar-breadcrumb {
+        margin-left: 75px;
+    }
+    .navbar-breadcrumb ul li {
+        display: inline-block;
+    }
 }
