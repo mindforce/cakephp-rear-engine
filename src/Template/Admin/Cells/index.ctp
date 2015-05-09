@@ -53,8 +53,8 @@
 		<td><?= h($cell->visibility) ?>&nbsp;</td>
 		<td><?= h($cell->visible_on) ?>&nbsp;</td>
 		<td class="actions">
-			<?= $this->Html->link(__('View'), ['action' => 'view', $cell->id], ['class' => 'btn btn-sm btn-primary', 'icon' => 'fa-eye']) ?>
-			<?= $this->Html->link(__('Edit'), ['action' => 'edit', $cell->id], ['class' => 'btn btn-sm btn-warning', 'icon' => 'fa-edit']) ?>
+			<?= $this->Html->link(__('View'), ['action' => 'view', $cell->id], ['class' => 'btn btn-sm btn-primary', 'icon' => 'eye']) ?>
+			<?= $this->Html->link(__('Edit'), ['action' => 'edit', $cell->id], ['class' => 'btn btn-sm btn-warning', 'icon' => 'edit']) ?>
 			<?= $this->Html->link(__('Delete'), ['action' => 'delete', $cell->id], ['title' => __('Are you sure you want to delete # {0}?', $cell->id), 'class' => 'btn btn-sm btn-danger btn-confirmation', 'icon' => 'fa-trash-o']) ?>
 		</td>
 	</tr>

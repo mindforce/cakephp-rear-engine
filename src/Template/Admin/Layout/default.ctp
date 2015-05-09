@@ -9,6 +9,8 @@
 * @since         0.0.1
 * @license       http://www.opensource.org/licenses/mit-license.php MIT License
 */
+
+use Cake\Core\Configure;
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,6 +43,7 @@
             'bootstrap.js',
             'Garderobe/BootstrapKit.jasny-bootstrap/jasny-bootstrap.js',
             'RearEngine.metisMenu/metisMenu.js',
+            'RearEngine.plugins/jquery.breadcrumb.js',
             'RearEngine.admin.js'
         ]);
         echo $this->fetch('script');
@@ -59,7 +62,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div id="breadcrumb" class="navbar-breadcrumb">
-                        <?= $this->Html->getCrumbList(['class' => 'nav navbar-nav'], __d('rear_engine', 'RearEngine Admin')) ?>
+                        <?= $this->Html->getCrumbList(['class' => 'nav navbar-nav'], Configure::read('Meta.title')) ?>
                     </div>
                 </div>
                 <?= $this->cell('RearEngine.Navigation', ['block' => 'top']); ?>

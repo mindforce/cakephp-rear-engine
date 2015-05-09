@@ -1,10 +1,13 @@
 $(function() {
     $("#side-menu").metisMenu();
-});
-
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-$(function() {
+    $('.breadcrumb').mfcrumb({
+        divider: '',
+        windowClass: 'navbar-breadcrumb',
+        animationTime: 100,
+        animation: true
+    });
+    //Loads the correct sidebar on window load,
+    //collapses the sidebar on window resize.
     $(window).bind("load", function() {
         $('#breadcrumb li').each(function() {
             if(!$(this).hasClass('first')&&!$(this).hasClass('last')){

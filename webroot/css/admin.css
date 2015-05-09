@@ -142,116 +142,6 @@ body {
     padding-left: 52px;
 }
 
-/* Additional styles */
-th.actions {
-    width: 250px;
-}
-
-#page-wrapper .actions {
-    margin: 40px 0 20px;
-}
-
-@media(max-width:991px) {
-    #page-wrapper .page-header {
-        margin: 20px 0 10px;
-    }
-    #page-wrapper .actions {
-        margin-top: 10px;
-    }
-}
-
-/* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
-.navbar-breadcrumb ul li {
-    padding: 15px 8px 15px 22px;
-    line-height: 20px;
-    vertical-align: bottom;
-}
-.navbar-breadcrumb ul li.first {
-    height: 50px;
-    font-size: 18px;
-    padding-left: 10px;
-}
-.navbar-breadcrumb ul li a,
-.navbar-breadcrumb ul li a span
-{
-    display: block;
-    line-height: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.navbar-breadcrumb li:not(:last-child):after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
-  border-left: 10px solid white;
-  position: absolute;
-  top: 50%;
-  margin-top: -17px;
-  left: 100%;
-  z-index: 3;
-}
-.navbar-breadcrumb li:not(:last-child):before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
-  border-left: 10px solid rgb(173, 173, 173);
-  position: absolute;
-  top: 50%;
-  margin-top: -17px;
-  margin-left: 1px;
-  left: 100%;
-  z-index: 2;
-}
-/* The responsive part */
-.navbar-breadcrumb > * > li span {
-    /* With less: .text-overflow(); */
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.navbar-breadcrumb > * > li:nth-child(n+2) {
-    display:none;
-}
-
-/* === For phones =================================== */
-@media (max-width: 767px) {
-    .navbar-breadcrumb > * > li:nth-last-child(-n+1) {
-        display:inline-block;
-    }
-    .navbar-breadcrumb > * > li span {
-        max-width: 60px;
-    }
-}
-
-/* === For tablets ================================== */
-@media (min-width: 768px) and (max-width:991px) {
-    .navbar-breadcrumb > * > li:nth-last-child(-n+2) {
-        display:inline-block;
-    }
-    .navbar-breadcrumb > * > li span {
-        max-width: 100px;
-    }
-}
-
-/* === For desktops ================================== */
-@media (min-width: 992px) {
-    .navbar-breadcrumb > * > li:nth-last-child(-n+4) {
-        display:inline-block;
-    }
-    .navbar-breadcrumb > * > li span {
-        max-width: 170px;
-    }
-}
-
 @media(min-width:768px) {
     body {
         padding-top: 50px;
@@ -284,9 +174,6 @@ th.actions {
         z-index: 1000;
         margin: 8px 0;
     }
-    .navbar-breadcrumb {
-        margin-left: 45px;
-    }
 }
 @media(max-width:768px) {
     #sidebar-toggle {
@@ -294,10 +181,98 @@ th.actions {
         position: absolute;
         z-index: 1000;
     }
+}
+
+
+
+/* Additional styles */
+th.actions {
+    width: 250px;
+}
+
+#page-wrapper .actions {
+    margin: 40px 0 20px;
+}
+
+@media(max-width:991px) {
+    #page-wrapper .page-header {
+        margin: 20px 0 10px;
+    }
+    #page-wrapper .actions {
+        margin-top: 10px;
+    }
+}
+
+/* breadcrumb */
+#breadcrumb .breadcrumb {
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+#breadcrumb .breadcrumb > li + li:before {
+  padding: 0;
+  content: "";
+}
+#breadcrumb .breadcrumb li {
+    padding: 15px 8px 15px 22px;
+    line-height: 20px;
+    vertical-align: bottom;
+}
+#breadcrumb .breadcrumb li.first {
+    height: 50px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+#breadcrumb .breadcrumb li a,
+#breadcrumb .breadcrumb ul li a span
+{
+    display: block;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+#breadcrumb .breadcrumb li:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+#breadcrumb .breadcrumb li:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 2;
+}
+
+@media(min-width:768px) and (max-width:992px) {
+    .navbar-breadcrumb {
+        margin-left: 45px;
+    }
+}
+@media(max-width:768px) {
     .navbar-breadcrumb {
         margin-left: 75px;
-    }
-    .navbar-breadcrumb ul li {
-        display: inline-block;
     }
 }

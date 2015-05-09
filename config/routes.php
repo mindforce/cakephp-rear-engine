@@ -15,17 +15,17 @@ use Cake\Routing\Router;
 /* Front default routes */
 Router::scope('/', function($routes) {
 	$routes->plugin('RearEngine', function($routes) {
-		$routes->fallbacks();
+		$routes->fallbacks('InflectedRoute');
 	});
 });
 
 /* Admin default routes */
 Router::prefix('admin', function($routes) {
 	//enable app default admin routes
-	$routes->fallbacks();
+	$routes->fallbacks('InflectedRoute');
 	//RearEngine default routes
 	$routes->plugin('RearEngine', function($routes) {
-		$routes->fallbacks();
+		$routes->fallbacks('InflectedRoute');
 	});
 	//RearEngine custom routes
 	$routes->connect('/', ['plugin' => 'RearEngine', 'controller' => 'Dashboards', 'action' => 'index']);

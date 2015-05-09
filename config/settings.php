@@ -187,7 +187,7 @@ $config = [
         'plugin' => 'RearEngine',
         'path' => 'Meta.title',
         'title' => 'Default site title',
-        'default' => 'My Site',
+        'default' => 'Rear Engine',
     ],
     [
         'plugin' => 'RearEngine',

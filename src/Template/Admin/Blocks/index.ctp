@@ -35,8 +35,8 @@
 		<td><?= h($block->admin) ?>&nbsp;</td>
 		<td><?= h($block->cell_count) ?>&nbsp;</td>
 		<td class="actions">
-			<?= $this->Html->link(__('View'), ['action' => 'view', $block->id], ['class' => 'btn btn-sm btn-primary', 'icon' => 'fa-eye']) ?>
-			<?= $this->Html->link(__('Edit'), ['action' => 'edit', $block->id], ['class' => 'btn btn-sm btn-warning', 'icon' => 'fa-edit']) ?>
+			<?= $this->Html->link(__('View'), ['action' => 'view', $block->id], ['class' => 'btn btn-sm btn-primary', 'icon' => 'eye']) ?>
+			<?= $this->Html->link(__('Edit'), ['action' => 'edit', $block->id], ['class' => 'btn btn-sm btn-warning', 'icon' => 'edit']) ?>
 			<?= $this->Html->link(__('Delete'), ['action' => 'delete', $block->id], ['title' => __('Are you sure you want to delete # {0}?', $block->id), 'class' => 'btn btn-sm btn-danger btn-confirmation', 'icon' => 'fa-trash-o']) ?>
 		</td>
 	</tr>
