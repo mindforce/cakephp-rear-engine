@@ -14,11 +14,17 @@ use Cake\Core\Configure;
 use Cake\Database\Type;
 use Cake\Core\App;
 use Cake\Event\EventManager;
+use Cake\Core\Plugin;
 
-Configure::write('App.paths.templates', array_merge(
-	Configure::read('App.paths.templates'),
-	App::path('Template', 'RearEngine')
-));
+Plugin::loadAll([
+    ['ignoreMissing' => true, 'bootstrap' => true],
+    'Garderobe/Bootstrap3',
+]);
+
+//Configure::write('App.paths.templates', array_merge(
+//	Configure::read('App.paths.templates'),
+//	App::path('Template', 'RearEngine')
+//));
 
 try {
 	Configure::load('config', 'default', true);

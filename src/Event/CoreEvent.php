@@ -36,7 +36,8 @@ class CoreEvent implements EventListenerInterface {
 		if (isset($controller->request->params['prefix'])
 			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
 
-			$controller->theme = 'RearEngine';
+			//TODO: RearEngine as theme prevent override in app templates
+            //$controller->theme = 'RearEngine';
 			if($theme = Configure::read('App.admin.theme'))
 				if (Plugin::loaded($theme)) $controller->theme = $theme;
 
