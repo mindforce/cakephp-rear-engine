@@ -25,6 +25,7 @@
         "cakephp/plugin-installer": "*",
         "cakephp/cakephp": "3.0.*",
 		"cakephp/migrations": "*",
+		"skie/cakephp-search": "*",
 		"mindforce/cakephp-garderobe-bootstrap3": "*",
 		"mindforce/cakephp-garderobe-font-awesome": "*"
 	},

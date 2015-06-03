@@ -22,7 +22,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 }
 ?>
 
-<div class="<?php echo Inflector::slug(Inflector::underscore($this->name), '-').' '.str_replace('admin_', '', $this->request->params['action']); ?>">
+<div class="<?= Inflector::slug(Inflector::underscore($this->name), '-').' '.str_replace('admin_', '', $this->request->params['action']); ?>">
 	<?php if($this->fetch('title')||$this->fetch('actions')): ?>
 	<div class="row">
 	    <?php if ($titleBlock = $this->fetch('title')): ?>
@@ -44,18 +44,20 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 	    <div class="col-lg-12">
             <?php if($this->fetch('content_header')): ?>
 		        <div class="panel panel-default">
-			        <?php if (($this->fetch('content_header'))||($this->fetch('search'))): ?>
+			        <?php if ($this->fetch('content_header')||$this->fetch('search')||isset($searchParameters)): ?>
 			        <div class="panel-heading">
 				        <?php if ($panelTitleBlock = $this->fetch('content_header')): ?>
 						    <?= $panelTitleBlock; ?>
 				        <?php endif; ?>
 				        <?php if ($searchBlock = $this->fetch('search')): ?>
-				        <div class="row pull-left">
-				        	<div class="col-lg-12">
-				        		<?= $searchBlock; ?>
-				        	</div>
-				        </div>
-				        <?php endif; ?>
+					        <div class="row pull-left">
+					        	<div class="col-lg-12">
+					        		<?= $searchBlock; ?>
+					        	</div>
+					        </div>
+						<?php else: ?>
+							<?= $this->element('PlumSearch.search') ?>
+						<?php endif; ?>
 				        <div class="clearfix"></div>
 	                </div>
 	                <?php endif; ?>
@@ -73,9 +75,9 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 				        <div class="row">
 			                <div class="col-lg-12">
 			                    <?php if ($pagingBlock = $this->fetch('paging')): ?>
-			                        <?php echo $pagingBlock; ?>
+			                        <?= $pagingBlock; ?>
 			                    <?php else: ?>
-			                        <?php echo $this->element('RearEngine.../Admin/Element/paginator'); ?>
+			                        <?= $this->element('RearEngine.paginator'); ?>
 			                    <?php endif; ?>
 			                </div>
 			            </div>
@@ -83,12 +85,15 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 				</div>
 			<?php else: ?>
 	            <?php if ($searchBlock = $this->fetch('search')): ?>
-		        <div class="row" style="margin-bottom:20px;">
-		            <div class="col-lg-12">
-		                <?= $searchBlock; ?>
-		            </div>
-		        </div>
-		        <?php endif; ?>
+			        <div class="pull-left" style="margin-bottom:20px;">
+						<div class="col-lg-12">
+		                	<?= $searchBlock; ?>
+						</div>
+		        	</div>
+				<?php else: ?>
+					<?= $this->element('PlumSearch.search') ?>
+				<?php endif; ?>
+
 
 	            <?php if ($formCreateBlock = $this->fetch('form_create')): ?>
                     <?= $formCreateBlock; ?>
@@ -103,9 +108,9 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 	            <div class="row">
 	                <div class="col-lg-12">
 	                    <?php if ($pagingBlock = $this->fetch('paging')): ?>
-	                        <?php echo $pagingBlock; ?>
+	                        <?= $pagingBlock; ?>
 	                    <?php else: ?>
-	                        <?php echo $this->element('RearEngine.../Admin/Element/paginator'); ?>
+	                        <?= $this->element('RearEngine.paginator'); ?>
 	                    <?php endif; ?>
 	                </div>
 	            </div>
