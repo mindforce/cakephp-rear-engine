@@ -21,10 +21,10 @@ Plugin::loadAll([
     'Garderobe/Bootstrap3',
 ]);
 
-//Configure::write('App.paths.templates', array_merge(
-//	Configure::read('App.paths.templates'),
-//	App::path('Template', 'RearEngine')
-//));
+Configure::write('App.paths.templates', array_merge(
+	Configure::read('App.paths.templates'),
+	App::path('Template', 'RearEngine')
+));
 
 try {
 	Configure::load('config', 'default', true);

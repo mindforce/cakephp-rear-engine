@@ -37,7 +37,7 @@ class CoreEvent implements EventListenerInterface {
 			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
 
 			//TODO: RearEngine as theme prevent override in app templates
-            //$controller->theme = 'RearEngine';
+            $controller->theme = 'RearEngine';
 			if($theme = Configure::read('App.admin.theme'))
 				if (Plugin::loaded($theme)) $controller->theme = $theme;
 
