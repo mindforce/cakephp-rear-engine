@@ -19,6 +19,8 @@ use Cake\Core\Plugin;
 Plugin::loadAll([
     ['ignoreMissing' => true, 'bootstrap' => true],
     'Garderobe/Bootstrap3',
+    'Garderobe/BootstrapKit',
+    'PlumSearch',
 ]);
 
 Configure::write('App.paths.templates', array_merge(

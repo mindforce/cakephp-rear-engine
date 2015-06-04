@@ -27,7 +27,8 @@
 		"cakephp/migrations": "*",
 		"skie/cakephp-search": "*",
 		"mindforce/cakephp-garderobe-bootstrap3": "*",
-		"mindforce/cakephp-garderobe-font-awesome": "*"
+		"mindforce/cakephp-garderobe-font-awesome": "*",
+		"mindforce/cakephp-garderobe-bootstrap-kit": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
