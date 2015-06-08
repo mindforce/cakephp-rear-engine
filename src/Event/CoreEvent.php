@@ -70,7 +70,7 @@ class CoreEvent implements EventListenerInterface {
         } else {
             $path = ROOT . DS . $path;
         }
-        $assetBase = $params['plugin'].'.';
+        $assetBase = (!empty($params['plugin']) ? $params['plugin'].'.' : '');
         $assetBase .= (!empty($params['prefix']) ? Inflector::underscore($params['prefix']) . '/' : '');
         $assetBase .= Inflector::underscore($params['controller']).'/'.Inflector::underscore($params['action']);
         $cssPath = str_replace('{asset}', str_replace('/', '', Configure::read('App.cssBaseUrl')), $path).'.css';
