@@ -63,7 +63,8 @@ class AdminMenuHelper extends Helper {
 			}
 
 			$liOptions['class'] .= $class;
-			if(isset($menu['url'])&&$this->isLinkActive($menu['url'])){
+			if((isset($menu['url'])&&$this->isLinkActive($menu['url']))
+				||(preg_match("/active/i", $block))){
 				$liOptions['class'] = ' active';
 			}
 			$html .= $this->Html->tag('li', $block, $liOptions);
@@ -115,6 +116,7 @@ class AdminMenuHelper extends Helper {
 	}
 
 	public function isLinkActive($url){
+		//TODO: Dashboard url always pass this check
 		$currentUrl = Router::url($this->request->params);
 		if(!is_array($url)){
 			$url = Router::parse($url);

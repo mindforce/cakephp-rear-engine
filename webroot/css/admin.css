@@ -129,6 +129,9 @@ body {
     text-decoration: none;
     color: #333;
 }
+.navmenu li.active>a {
+    background-color: #e2e2e2;
+}
 
 .navmenu li a:active,
 .navmenu li a:focus {
