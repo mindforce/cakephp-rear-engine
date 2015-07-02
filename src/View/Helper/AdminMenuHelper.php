@@ -14,6 +14,7 @@ namespace RearEngine\View\Helper;
 use Cake\View\Helper;
 use Cake\View\View;
 use Cake\Utility\Hash;
+use Cake\Routing\Router;
 
 /**
  * AdminMenu helper
@@ -62,6 +63,9 @@ class AdminMenuHelper extends Helper {
 			}
 
 			$liOptions['class'] .= $class;
+			if(isset($menu['url'])&&$this->isLinkActive($menu['url'])){
+				$liOptions['class'] = ' active';
+			}
 			$html .= $this->Html->tag('li', $block, $liOptions);
 		}
 		return $this->Html->tag('ul', $html, $options);
@@ -106,9 +110,17 @@ class AdminMenuHelper extends Helper {
 			]);
 			$link['url'] = '#';
 		}
-
 		return $this->Html->link($link['title'], $link['url'], $aOptions);
 
+	}
+
+	public function isLinkActive($url){
+		$currentUrl = Router::url($this->request->params);
+		if(!is_array($url)){
+			$url = Router::parse($url);
+		}
+		$url = Router::normalize($url);
+		return (boolean)preg_match("/".preg_quote($url, "/")."/i", $currentUrl);
 	}
 
 }
