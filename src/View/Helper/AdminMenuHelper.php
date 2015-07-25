@@ -42,6 +42,7 @@ class AdminMenuHelper extends Helper {
 		$html = '';
 		$data = Hash::sort($data, '{s}.weight');
 		foreach($data as $class=>$menu){
+			if(empty($menu)) continue;
 			if(!isset($menu['options'])) $menu['options'] = [];
 			$isDropdown = false;
 			$liOptions = ['class' => ''];
@@ -54,12 +55,14 @@ class AdminMenuHelper extends Helper {
 			$block = $this->{$menu['type']}($menu, $level);
 
 			$nextLevel = $level+1;
-			if(isset($menu['children'])&&!empty($menu['children'])&&($nextLevel < 3)){
-				$childrenOptions = ['class' => 'nav nav-'.$this->_levels[$nextLevel].'-level'];
-				if($isDropdown)
-					$childrenOptions = ['class' => 'dropdown-menu '.$menu['options']['dropdown']];
+			if($menu['type'] == 'link'){
+				if(isset($menu['children'])&&!empty($menu['children'])&&($nextLevel < 3)){
+					$childrenOptions = ['class' => 'nav nav-'.$this->_levels[$nextLevel].'-level'];
+					if($isDropdown)
+						$childrenOptions = ['class' => 'dropdown-menu '.$menu['options']['dropdown']];
 
-				$block .= $this->render($menu['children'], $nextLevel, $childrenOptions);
+					$block .= $this->render($menu['children'], $nextLevel, $childrenOptions);
+				}
 			}
 
 			$liOptions['class'] .= $class;
@@ -70,10 +73,6 @@ class AdminMenuHelper extends Helper {
 			$html .= $this->Html->tag('li', $block, $liOptions);
 		}
 		return $this->Html->tag('ul', $html, $options);
-	}
-
-	protected function cell($cell, $level = 0){
-		return $this->_View->cell($cell['cell'], ['options' => $cell['options']]);
 	}
 
 	protected function link($link, $level = 0){
@@ -115,7 +114,24 @@ class AdminMenuHelper extends Helper {
 
 	}
 
+	protected function cell($cell, $level = 0){
+		$options = ['options' => $cell['options']];
+		if(isset($cell['children'])){
+			$options['children'] = $cell['children'];
+		}
+		return $this->_View->cell($cell['cell'], $options);
+	}
+
+	protected function divider($cell, $level = 0){
+		return $this->separator($cell, $level);
+	}
+
+	protected function separator($cell, $level = 0){
+		return $this->Html->tag('div', '', ['role' => 'separator', 'class' => 'divider']);
+	}
+
 	public function isLinkActive($url){
+		//TODO: Maybe more intelligent active link detection
 		$currentUrl = Router::url($this->request->params);
 		if(!empty($this->request->base)||($this->request->base != '/')){
 			$currentUrl = str_replace($this->request->base, '', $currentUrl);
