@@ -116,13 +116,15 @@ class AdminMenuHelper extends Helper {
 	}
 
 	public function isLinkActive($url){
-		//TODO: Dashboard url always pass this check
 		$currentUrl = Router::url($this->request->params);
+		if(!empty($this->request->base)||($this->request->base != '/')){
+			$currentUrl = str_replace($this->request->base, '', $currentUrl);
+		}
 		if(!is_array($url)){
 			$url = Router::parse($url);
 		}
 		$url = Router::normalize($url);
-		return (boolean)preg_match("/".preg_quote($url, "/")."/i", $currentUrl);
+		return (boolean)preg_match("/^(".preg_quote($url, "/").")(\/?\?{0}|\/?\?{1}.*)$/i", trim($currentUrl));
 	}
 
 }
