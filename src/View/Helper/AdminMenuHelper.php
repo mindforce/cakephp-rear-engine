@@ -139,8 +139,11 @@ class AdminMenuHelper extends Helper {
 		if(!is_array($url)){
 			$url = Router::parse($url);
 		}
-		$url = Router::normalize($url);
-		return (boolean)preg_match("/^(".preg_quote($url, "/").")(\/?\?{0}|\/?\?{1}.*)$/i", trim($currentUrl));
+		
+		if($this->request->params['controller'] == $url['controller']){
+			$url = Router::normalize($url);
+			return (boolean)preg_match("/^(".preg_quote($url, "/").")/", trim($currentUrl));
+		}
 	}
 
 }
