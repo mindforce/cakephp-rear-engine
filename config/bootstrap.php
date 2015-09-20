@@ -17,7 +17,7 @@ use Cake\Event\EventManager;
 use Cake\Core\Plugin;
 
 Plugin::loadAll([
-    ['ignoreMissing' => true, 'bootstrap' => true],
+    ['ignoreMissing' => true, 'bootstrap' => true, 'routes' => true],
     'Garderobe/Bootstrap3',
     'Garderobe/BootstrapKit',
     'PlumSearch',
