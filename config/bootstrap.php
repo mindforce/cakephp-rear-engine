@@ -21,6 +21,7 @@ Plugin::loadAll([
     'Garderobe/Bootstrap3',
     'Garderobe/BootstrapKit',
     'PlumSearch',
+    'Search'
 ]);
 
 Configure::write('App.paths.templates', array_merge(
