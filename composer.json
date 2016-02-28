@@ -23,6 +23,7 @@
 		"cakephp/migrations": "*",
 		"skie/cakephp-search": "*",
 		"friendsofcake/search": "~1.2",
+		"mindforce/cakephp-garderobe-platform": "*",
 		"mindforce/cakephp-garderobe-bootstrap3": "*",
 		"mindforce/cakephp-garderobe-bootstrap-kit": "*"
 	},

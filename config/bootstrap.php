@@ -18,6 +18,7 @@ use Cake\Core\Plugin;
 
 Plugin::loadAll([
     ['ignoreMissing' => true, 'bootstrap' => true, 'routes' => true],
+    'Platform',
     'Garderobe/Bootstrap3',
     'Garderobe/BootstrapKit',
     'PlumSearch',
@@ -29,19 +30,11 @@ Configure::write('App.paths.templates', array_merge(
 	App::path('Template', 'RearEngine')
 ));
 
-try {
-	Configure::load('config', 'default', true);
-} catch (\Exception $e) {
-	//die('Unable to load Config/settings file.');
-}
 Configure::write('Routing.prefixes', ['admin']);
 //debug(Configure::read());
-
-Type::map('json', 'RearEngine\Database\Type\JsonType');
-
 
 EventManager::instance()->attach(
 	new RearEngine\Event\CoreEvent,
     null,
-	['priority' => 1]
+	['priority' => 2]
 );

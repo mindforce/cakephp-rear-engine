@@ -20,6 +20,12 @@ use RearEngine\Controller\AppController;
  */
 class BlocksController extends AppController {
 
+	public function initialize()
+    {
+		parent::initialize();
+        $this->loadModel('Platform.Blocks');
+    }
+
 /**
  * Index method
  *

@@ -25,9 +25,6 @@ class CoreEvent implements EventListenerInterface {
                 'callable' => 'onControllerInit',
 		        'priority' => 1
             ),
-            'View.beforeLayout' => [
-                'callable' => 'setDefaultViewAssets'
-            ]
         );
     }
 
@@ -37,15 +34,9 @@ class CoreEvent implements EventListenerInterface {
 			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
 
 			//TODO: RearEngine as theme prevent override in app templates
-            if (version_compare(Configure::version(), '3.1.0', '>=')) {
-                $controller->viewBuilder()->theme('RearEngine');
-                if($theme = Configure::read('App.admin.theme'))
-    				if (Plugin::loaded($theme)) $controller->viewBuilder()->theme($theme);
-            } else {
-                $controller->theme = 'RearEngine';
-                $controller->viewBuilder()->theme('RearEngine');
-                if($theme = Configure::read('App.admin.theme'))
-    				if (Plugin::loaded($theme)) $controller->theme = $theme;
+            $controller->viewBuilder()->theme('RearEngine');
+            if(($theme = Configure::read('App.admin.theme'))&&Plugin::loaded($theme)){
+                $controller->viewBuilder()->theme($theme);
             }
 
 			foreach(Plugin::loaded() as $plugin){
@@ -66,30 +57,6 @@ class CoreEvent implements EventListenerInterface {
 			}
 
 		}
-    }
-
-    public function setDefaultViewAssets($event){
-        $view = $event->subject();
-        $params = $view->request->params;
-        $path = Configure::read('App.webroot') . DS . '{asset}' . DS;
-        $path .= (!empty($params['prefix']) ? Inflector::underscore($params['prefix']) . DS : '');
-        $path .= Inflector::underscore($params['controller']). DS . Inflector::underscore($params['action']);
-        if (isset($params['plugin'])&&!empty($params['plugin'])){
-            $path = Plugin::path($params['plugin']). $path;
-        } else {
-            $path = ROOT . DS . $path;
-        }
-        $assetBase = (!empty($params['plugin']) ? $params['plugin'].'.' : '');
-        $assetBase .= (!empty($params['prefix']) ? Inflector::underscore($params['prefix']) . '/' : '');
-        $assetBase .= Inflector::underscore($params['controller']).'/'.Inflector::underscore($params['action']);
-        $cssPath = str_replace('{asset}', str_replace('/', '', Configure::read('App.cssBaseUrl')), $path).'.css';
-        if(file_exists($cssPath)) {
-            $view->Html->css($assetBase.'.css', ['block' => true]);
-        }
-        $jsPath = str_replace('{asset}', str_replace('/', '', Configure::read('App.jsBaseUrl')), $path).'.js';
-        if(file_exists($jsPath)) {
-            $view->Html->script($assetBase.'.js', ['block' => true]);
-        }
     }
 
 }

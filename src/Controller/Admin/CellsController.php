@@ -20,6 +20,12 @@ use RearEngine\Controller\AppController;
  */
 class CellsController extends AppController {
 
+	public function initialize()
+    {
+		parent::initialize();
+        $this->loadModel('Platform.Cells');
+    }
+
 /**
  * Index method
  *

@@ -13,7 +13,7 @@ namespace RearEngine\Controller\Admin;
 
 use RearEngine\Controller\AppController;
 use Cake\Utility\Hash;
-use RearEngine\Core\Settings;
+use Platform\Core\Settings;
 
 /**
  * Settings Controller
@@ -21,6 +21,12 @@ use RearEngine\Core\Settings;
  * @property RearEngine\Model\Table\SettingsTable $Settings
  */
 class SettingsController extends AppController {
+
+	public function initialize()
+    {
+		parent::initialize();
+        $this->loadModel('Platform.Settings');
+    }
 
 /**
  * Index method
