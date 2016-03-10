@@ -19,7 +19,7 @@ use RearEngine\Controller\AppController;
  */
 class DashboardsController extends AppController {
 
-	public $helpers = ['RearEngine.Block'];
+	public $helpers = ['Platform.Block'];
 
 /**
  * Index method
@@ -27,7 +27,7 @@ class DashboardsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->loadModel('RearEngine.Blocks');
+		$this->loadModel('Platform.Blocks');
 		$blocks = $this->Blocks->find('all')
 			->contain([
 				'Cells' => function ($q) {

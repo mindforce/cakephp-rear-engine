@@ -56,7 +56,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 					        	</div>
 					        </div>
 						<?php else: ?>
-							<?= $this->element('PlumSearch.search') ?>
+							<?= $this->element('RearEngine.search') ?>
 						<?php endif; ?>
 				        <div class="clearfix"></div>
 	                </div>
@@ -91,7 +91,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 						</div>
 		        	</div>
 				<?php else: ?>
-					<?= $this->element('PlumSearch.search') ?>
+					<?= $this->element('RearEngine.search') ?>
 				<?php endif; ?>
 
 
