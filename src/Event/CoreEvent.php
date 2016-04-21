@@ -30,33 +30,34 @@ class CoreEvent implements EventListenerInterface {
 
     public function onControllerInit($event) {
         $controller = $event->subject();
-		if (isset($controller->request->params['prefix'])
-			&&in_array($controller->request->params['prefix'], ['admin', 'Admin'])){
+        if (isset($controller->request->params['prefix'])) {
 
-			//TODO: RearEngine as theme prevent override in app templates
+            //TODO: RearEngine as theme prevent override in app templates
             $controller->viewBuilder()->theme('RearEngine');
+            $menuFile = $controller->request->params['prefix'] . '_menus';
             if(($theme = Configure::read('App.admin.theme'))&&Plugin::loaded($theme)){
                 $controller->viewBuilder()->theme($theme);
             }
 
-			foreach(Plugin::loaded() as $plugin){
-				try {
-					Configure::load($plugin.'.admin_menus', 'default', true);
-				} catch (\Exception $e) {
-					if(Configure::read('debug')){
-                        Log::warning('Unable to load app '.$plugin.'/Config/admin_menus config file', ['scope' => 'RearEngine plugin']);
+            foreach(Plugin::loaded() as $plugin) {
+                try {
+                    Configure::load($plugin.'.'.$menuFile, 'default', true);
+                } catch (\Exception $e) {
+                    if(Configure::read('debug')) {
+                        Log::warning('Unable to load app '.$plugin.'/Config/' . $menuFile . ' config file', ['scope' => 'RearEngine plugin']);
                     }
-				}
-			}
-			try {
-				Configure::load('admin_menus', 'default', true);
-			} catch (\Exception $e) {
-				if(Configure::read('debug')){
-                    Log::warning('Unable to load App/Config/admin_menus config file.', ['scope' => 'RearEngine plugin']);
                 }
-			}
+            }
 
-		}
+            try {
+                Configure::load($menuFile, 'default', true);
+            } catch (\Exception $e) {
+                if(Configure::read('debug')){
+                    Log::warning('Unable to load App/Config/' . $menuFile . ' config file.', ['scope' => 'RearEngine plugin']);
+                }
+            }
+
+        }
     }
 
 }
