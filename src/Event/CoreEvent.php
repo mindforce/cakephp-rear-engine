@@ -32,11 +32,11 @@ class CoreEvent implements EventListenerInterface {
         $controller = $event->subject();
         if (isset($controller->request->params['prefix'])) {
 
-            //TODO: RearEngine as theme prevent override in app templates
-            $controller->viewBuilder()->theme('RearEngine');
             $menuFile = $controller->request->params['prefix'] . '_menus';
-            if(($theme = Configure::read('App.admin.theme'))&&Plugin::loaded($theme)){
-                $controller->viewBuilder()->theme($theme);
+            if($theme = Configure::read('App.admin.theme')){
+                if(($theme != '')&&($theme != 'RearEngine')&&Plugin::loaded($theme)){
+                    $controller->viewBuilder()->theme($theme);
+                }
             }
 
             foreach(Plugin::loaded() as $plugin) {

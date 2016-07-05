@@ -25,10 +25,15 @@ Plugin::loadAll([
     'Search'
 ]);
 
+// Setup RearEngine as theme does not provide layout and view overriding
+// so we just add it as additional templates path
 Configure::write('App.paths.templates', array_merge(
-	Configure::read('App.paths.templates'),
-	App::path('Template', 'RearEngine')
+    App::path('Template', 'RearEngine'),
+    Configure::read('App.paths.templates')
 ));
+
+//debug(Configure::read('App.paths.templates'));
+//exit();
 
 Configure::write('Routing.prefixes', ['admin']);
 //debug(Configure::read());
