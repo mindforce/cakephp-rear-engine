@@ -17,6 +17,8 @@ use Cake\Utility\Inflector;
 use Cake\Core\Configure;
 use Cake\Log\Log;
 
+use Cake\Core\App;
+
 class CoreEvent implements EventListenerInterface {
 
     public function implementedEvents() {
@@ -56,7 +58,6 @@ class CoreEvent implements EventListenerInterface {
                     Log::warning('Unable to load App/Config/' . $menuFile . ' config file.', ['scope' => 'RearEngine plugin']);
                 }
             }
-
         }
     }
 

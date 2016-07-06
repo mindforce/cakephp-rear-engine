@@ -28,15 +28,15 @@ Plugin::loadAll([
 // Setup RearEngine as theme does not provide layout and view overriding
 // so we just add it as additional templates path
 Configure::write('App.paths.templates', array_merge(
+    //Support for overrides via app RearEngine plugin template
+    [APP . 'Template' . DS . 'Plugin' . DS . 'RearEngine' . DS],
+    //Support for default RearEngine plugin template
     App::path('Template', 'RearEngine'),
-    Configure::read('App.paths.templates')
+    //Do not forget for default Cake paths
+    App::path('Template')
 ));
 
-//debug(Configure::read('App.paths.templates'));
-//exit();
-
 Configure::write('Routing.prefixes', ['admin']);
-//debug(Configure::read());
 
 EventManager::instance()->attach(
 	new RearEngine\Event\CoreEvent,
