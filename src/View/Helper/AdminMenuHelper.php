@@ -126,6 +126,10 @@ class AdminMenuHelper extends Helper {
 		return $this->separator($cell, $level);
 	}
 
+	protected function label($cell, $level = 0){
+		return $cell['title'];
+	}
+
 	protected function separator($cell, $level = 0){
 		return $this->Html->tag('div', '', ['role' => 'separator', 'class' => 'divider']);
 	}
@@ -139,7 +143,7 @@ class AdminMenuHelper extends Helper {
 		if(!is_array($url)){
 			$url = Router::parse($url);
 		}
-		
+
 		if($this->request->params['controller'] == $url['controller']){
 			$url = Router::normalize($url);
 			return (boolean)preg_match("/^(".preg_quote($url, "/").")/", trim($currentUrl));

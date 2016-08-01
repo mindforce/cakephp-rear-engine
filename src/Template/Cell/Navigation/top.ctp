@@ -10,5 +10,4 @@
 * @license       http://www.opensource.org/licenses/mit-license.php MIT License
 */
 ?>
-
 <?= $this->AdminMenu->render($menu, 0, ['class' => "nav navbar-nav navbar-top-links navbar-right"]); ?>
