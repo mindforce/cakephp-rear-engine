@@ -46,7 +46,7 @@ class CoreEvent implements EventListenerInterface {
                     Configure::load($plugin.'.'.$menuFile, 'default', true);
                 } catch (\Exception $e) {
                     if(Configure::read('debug')) {
-                        Log::warning('Unable to load app '.$plugin.'/Config/' . $menuFile . ' config file', ['scope' => 'RearEngine plugin']);
+                        Log::warning('Unable to load app '.$plugin.'/Config/' . $menuFile . ' config file', ['scope' => ['RearEngine plugin']]);
                     }
                 }
             }
@@ -55,7 +55,7 @@ class CoreEvent implements EventListenerInterface {
                 Configure::load($menuFile, 'default', true);
             } catch (\Exception $e) {
                 if(Configure::read('debug')){
-                    Log::warning('Unable to load App/Config/' . $menuFile . ' config file.', ['scope' => 'RearEngine plugin']);
+                    Log::warning('Unable to load App/Config/' . $menuFile . ' config file.', ['scope' => ['RearEngine plugin']]);
                 }
             }
         }
