@@ -85,11 +85,7 @@ if (!isset($viewCrumbs)||($viewCrumbs === false)){
 				</div>
 			<?php else: ?>
 	            <?php if ($searchBlock = $this->fetch('search')): ?>
-			        <div class="pull-left" style="margin-bottom:20px;">
-						<div class="col-lg-12">
-		                	<?= $searchBlock; ?>
-						</div>
-		        	</div>
+                	<?= $searchBlock; ?>
 				<?php else: ?>
 					<?= $this->element('RearEngine.search') ?>
 				<?php endif; ?>
