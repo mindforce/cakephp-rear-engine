@@ -1,45 +1,45 @@
 {
-	"name": "mindforce/cakephp-rear-engine",
-	"description": "CakePHP Admin plugin",
-	"homepage": "http://mindforce.me",
-	"keywords": ["cakephp", "ui", "backend", "administration"],
-	"type": "cakephp-plugin",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Denys Kyselov",
-			"homepage": "https://mindforce.me"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/mindforce/cakephp-rear-engine/issues",
-		"source": "https://github.com/mindforce/cakephp-rear-engine"
-	},
-	"minimum-stability": "dev",
-	"require": {
-		"php": ">=5.4.16",
+    "name": "mindforce/cakephp-rear-engine",
+    "description": "CakePHP Admin plugin",
+    "homepage": "http://mindforce.me",
+    "keywords": ["cakephp", "ui", "backend", "administration"],
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denys Kyselov",
+            "homepage": "https://mindforce.me"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mindforce/cakephp-rear-engine/issues",
+        "source": "https://github.com/mindforce/cakephp-rear-engine"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6",
         "cakephp/plugin-installer": "*",
-        "cakephp/cakephp": ">=3.1",
-		"cakephp/migrations": "*",
-		"skie/cakephp-search": "*",
-		"friendsofcake/search": "~1.2",
-		"mindforce/cakephp-platform": "*",
-		"mindforce/cakephp-garderobe-bootstrap3": "*",
-		"mindforce/cakephp-garderobe-bootstrap-kit": "*"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "*"
-	},
-	"autoload": {
-		"psr-4": {
-			"RearEngine\\": "src"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"RearEngine\\Test\\": "tests",
+        "cakephp/cakephp": "~3.2",
+        "cakephp/migrations": "*",
+        "skie/cakephp-search": "*",
+        "friendsofcake/search": "~4.3",
+        "mindforce/cakephp-platform": "*",
+        "mindforce/cakephp-garderobe-bootstrap3": "*",
+        "mindforce/cakephp-garderobe-bootstrap-kit": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RearEngine\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RearEngine\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
-		}
-	}
+        }
+    }
 
 }
