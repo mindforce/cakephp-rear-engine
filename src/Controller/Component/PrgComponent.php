@@ -6,12 +6,8 @@ use Search\Controller\Component\PrgComponent as BasePrgComponent;
 
 class PrgComponent extends BasePrgComponent
 {
-    public function initialize(array $config)
-    {
-        parent::initialize($config);
-    }
 
-    public function beforeRender(Event $event)
+    public function beforeRender()
     {
         $parameters = [];
         $controller = $this->_registry->getController();
