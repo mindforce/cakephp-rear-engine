@@ -35,13 +35,13 @@ class NavigationCell extends Cell {
  *
  * @return void
  */
-	public $helpers = ['RearEngine.AdminMenu'];
+    public $helpers = ['RearEngine.AdminMenu'];
 
-	public function display($block = null) {
-		if(!empty($block)){
-			$this->set('menu', Configure::read('App.admin.menu.'.$block));
-			$this->template = $block;
-		}
-	}
+    public function display($block = null) {
+        if(!empty($block)){
+            $this->set('menu', Configure::read('App.admin.menu.'.$block));
+            $this->template = $block;
+        }
+    }
 
 }

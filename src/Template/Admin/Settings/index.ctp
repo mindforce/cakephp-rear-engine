@@ -87,14 +87,15 @@ echo $this->Html->div('tab-content', implode("\n", $tabsContent));
 
 <div class="btn-group pull-right form-actions">
 	<?php
-		echo $this->Form->submit(__d('muffin', 'Save settings'), array(
-			'name' => 'save',
+		echo $this->Form->button(__d('rear_engine', 'Save settings'), [
+            'type' => 'submit',
+            'name' => 'save',
 		    'div' => false,
 		    'class' => 'btn btn-sm btn-success',
-		));
-		echo $this->Html->link(__d('muffin', 'Cancel'),
-			array('controller'=>'dashboards', 'action' => 'index'),
-			array('class' => 'btn btn-sm btn-default')
+        ]);
+		echo $this->Html->link(__d('rear_engine', 'Cancel'),
+			['controller'=>'dashboards', 'action' => 'index'],
+			['class' => 'btn btn-sm btn-default']
 		);
 	?>
 </div>
@@ -102,6 +103,6 @@ echo $this->Html->div('tab-content', implode("\n", $tabsContent));
 
 <?php $this->start('actions'); ?>
 <div class="btn-group">
-	<?php echo $this->Html->link(__d('rear_engine', 'Dashboard'), array('controller'=>'Dashboards', 'action' => 'index'),array('class' => 'btn btn-primary')); ?>
+	<?php echo $this->Html->link(__d('rear_engine', 'Dashboard'), ['controller'=>'Dashboards', 'action' => 'index'], ['class' => 'btn btn-primary']); ?>
 </div>
 <?php $this->end(); ?>
