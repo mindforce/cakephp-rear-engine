@@ -154,11 +154,16 @@ class AdminMenuHelper extends Helper {
         if(!is_array($url)){
             $url = Router::parse($url);
         }
+        if(!isset($url['action'])||empty($url['action'])){
+            $url['action'] = 'index';
+        }
 
         if($this->request->params['controller'] == $url['controller']){
-            $url = Router::normalize($url);
-            return (boolean)preg_match("/^(".preg_quote($url, "/").")/", trim($currentUrl));
+            if($this->request->params['action'] == $url['action']){
+                return true;
+            }
         }
+        return false;
     }
 
 }

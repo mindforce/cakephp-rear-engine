@@ -52,7 +52,7 @@ foreach ($settings as $i => $setting){
 
 	$id    = $this->Form->input("Setting.$i.id", ['type'=>'hidden', 'value' => $setting->id]);
 	$outputCell = 'RearEngine.Setting';
-	if(!empty($setting->cell)) $outputCell = $setting->cell;
+    if(!empty($setting->cell)) $outputCell = $setting->cell;
 	$input = $this->cell($outputCell, ['path' => "Setting.$i.value", 'options' => $options]);
 
 	$inputs[$section][] = $id.$input;
