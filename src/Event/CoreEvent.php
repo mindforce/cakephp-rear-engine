@@ -31,7 +31,7 @@ class CoreEvent implements EventListenerInterface {
     }
 
     public function onControllerInit($event) {
-        $controller = $event->subject();
+        $controller = $event->getSubject();
         if (isset($controller->request->params['prefix'])) {
 
             $menuFile = $controller->request->params['prefix'] . '_menus';
